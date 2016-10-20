@@ -1,0 +1,22 @@
+[
+  {
+    "id": "airgun_pellet",
+    "type": "AMMO",
+    "name": "airgun pellet",
+    "description": "A diabolo airgun pellet.  It has greater damage potential than the BB.",
+    "weight": 3,
+    "volume": 1,
+    "price": 1500,
+    "material": "steel",
+    "symbol": "=",
+    "color": "light_gray",
+    "count": 250,
+    "stack_size": 200,
+    "ammo_type": "airgun_pellet",
+    "range": 2,
+    "damage": 3,
+    "dispersion": 50,
+    "recoil": 20,
+    "effects": [ "NEVER_MISFIRES" ]
+  }
+]
