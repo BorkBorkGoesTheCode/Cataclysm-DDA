@@ -72,16 +72,16 @@
         "name_plural" : ".20 DREAD Pellets",
         "symbol" : "=",
         "color" : "light_gray",
-        "description" : "These metal pellets are propelled with the help of electromagnets, therefore they do not produce sound, flash or heat signature.",
+        "description" : "These ferromagnetic metal pellets are propelled with the help of electromagnets, therefore they do not produce much sound, flash or heat signature.",
         "material" : "steel",
         "volume" : 1,
         "weight" : 4,
         "bashing" : 1,
-        "ammo_type" : "wr_dread",
-        "damage" : 6,
+        "ammo_type" : [ "wr_dread", "pebble" ],
+        "damage" : 5,
         "pierce" : 2,
-        "range" : 8,
-        "dispersion" : 8,
+        "range" : 10,
+        "dispersion" : 15,
         "count" : 200
     }
 ]
