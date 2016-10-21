@@ -6,15 +6,16 @@
     "description": "A box of small steel balls.  They deal virtually no damage.",
     "weight": 1,
     "volume": 1,
-    "price": 5000,
+    "price": 500,
     "material": "steel",
     "color": "light_gray",
     "symbol": "=",
-    "count": 200,
-    "ammo_type": "BB",
+    "count": 500,
+    "stack_size": 250,
+    "ammo_type": [ "BB", "airgun_pellet" ],
     "damage": 2,
-    "range": 12,
-    "dispersion": 11,
+    "range": 2,
+    "dispersion": 70,
     "effects": [ "NEVER_MISFIRES" ]
   }
 ]
