@@ -1,0 +1,25 @@
+[
+  {
+    "id": "bbgun_tac",
+    "copy-from": "rifle_manual",
+    "type": "AMMO",
+    "name": "tactical pelletgun",
+    "description": "An air-powered pelletgun with an integral suppressor and several rail mounts.",
+    "weight": 1723,
+    "volume": 5,
+    "price": 25000,
+    "to_hit": -1,
+    "bashing": 8,
+    "material": [ "aluminum", "steel", "plastic" ],
+    "color": "dark_gray",
+    "ammo": "airgun_pellet",
+    "range": 11,
+    "ranged_damage": 8,
+    "dispersion": 165,
+    "durability": 8,
+    "loudness": 25,
+    "clip_size": 5,
+    "reload": 50,
+    "built_in_mods": [ "suppressor" ]
+  }
+]
