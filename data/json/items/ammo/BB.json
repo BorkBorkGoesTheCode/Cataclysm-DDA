@@ -1,0 +1,20 @@
+[
+  {
+    "id": "bb",
+    "type": "AMMO",
+    "name": "BB",
+    "description": "A box of small steel balls.  They deal virtually no damage.",
+    "weight": 1,
+    "volume": 1,
+    "price": 5000,
+    "material": "steel",
+    "color": "light_gray",
+    "symbol": "=",
+    "count": 200,
+    "ammo_type": "BB",
+    "damage": 2,
+    "range": 12,
+    "dispersion": 11,
+    "effects": [ "NEVER_MISFIRES" ]
+  }
+]
