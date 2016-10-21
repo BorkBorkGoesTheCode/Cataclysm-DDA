@@ -17,7 +17,6 @@
     "ranged_damage": 3,
     "dispersion": 150,
     "durability": 7,
-    "loudness": -8,
     "clip_size": 150,
     "reload": 50,
     "valid_mod_locations": [ [ "accessories", 4 ], [ "sights", 1 ], [ "stock", 1 ] ],

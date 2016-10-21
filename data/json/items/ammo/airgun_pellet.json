@@ -17,6 +17,7 @@
     "damage": 3,
     "dispersion": 50,
     "recoil": 20,
+    "loudness": 35,
     "effects": [ "NEVER_MISFIRES" ]
   }
 ]

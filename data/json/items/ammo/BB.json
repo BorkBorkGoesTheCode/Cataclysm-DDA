@@ -16,6 +16,7 @@
     "damage": 2,
     "range": 2,
     "dispersion": 70,
+    "loudness": 10,
     "effects": [ "NEVER_MISFIRES" ]
   }
 ]
