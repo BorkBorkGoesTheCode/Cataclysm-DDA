@@ -134,6 +134,8 @@
     "id": "guns_rifle_common",
     "//": "Rifles commonly owned by citizens and found in many locations.",
     "items": [
+      [ "bbgun", 50 ],
+      [ "bbgun_tac", 30 ],
       [ "browning_blr", 25 ],
       [ "garand", 65 ],
       [ "ar15", 30 ],
@@ -412,6 +414,7 @@
     "items": [
       { "group": "guns_improvised", "prob": 200 },
       [ "ar15", 5 ],
+      [ "bbgun_tac", 5 ],
       [ "mossberg_500", 5 ],
       [ "remington_870", 5 ],
       [ "ruger_1022", 15 ],
