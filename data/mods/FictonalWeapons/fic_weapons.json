@@ -105,6 +105,29 @@
   },
   {
     "id": "hk_mp5eod",
+    "copy-from": "smg_base",
+    "type": "GUN",
+    "name": "M919",
+    "description": "Manufactured by Sarah and Suhl machine company of Portland, Maine, the M919 submachine gun is the most accurate 9mm submachine gun on the market.  Intended for police use, it is fitted with an integral grenade launcher.",
+    "weight": 3100,
+    "volume": 5,
+    "price": 430000,
+    "to_hit": -1,
+    "bashing": 10,
+    "material": [ "steel", "plastic" ],
+    "ammo": "9mm",
+    "ranged_damage": 1,
+    "dispersion": 150,
+    "durability": 8,
+    "modes": [
+        [ "DEFAULT", "semi-auto", 1 ],
+        [ "BURST", "3 rd.", 3 ],
+        [ "AUTO", "auto", 8 ]
+    ],
+    "built_in_mods": [ "m320_mod" ]
+  },
+  {
+    "id": "e1776",
     "type": "GUN",
     "symbol": "(",
     "color": "dark_gray",
