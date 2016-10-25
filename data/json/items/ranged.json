@@ -225,7 +225,7 @@
     "loudness" : 25,
     "barrel_length" : 2,
     "built_in_mods" : ["combination_gun_shotgun_pipe"],
-    "valid_mod_locations": [[ "muzzle", 1 ],[ "stock", 1 ]]
+    "valid_mod_locations": [[ "accessories", 4 ],[ "bore", 1 ],[ "sights", 1 ],[ "stock", 1 ]]
   },
   {
     "id": "tihar",
