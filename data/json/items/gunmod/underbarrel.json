@@ -48,7 +48,8 @@
     "name": "combination gun shotgun",
     "description": "The integrated underbarrel shotgun of a combination gun which holds a single shot.  It's irremovable.",
     "weight": 2600,
-    "volume": 0,
+    "volume": 4,
+    "integral_volume": 0,
     "price": 95000,
     "to_hit": -1,
     "material": [ "steel" ],
@@ -60,12 +61,12 @@
       "ammo": "shot",
       "skill": "shotgun",
       "range": 2,
-      "dispersion": 20,
+      "dispersion": 50,
       "durability": 10,
       "clip_size": 1
     },
     "dispersion_modifier": 15,
-    "flags": [ "RELOAD_ONE", "IRREMOVABLE", "TRADER_AVOID" ]
+    "flags": [ "RELOAD_ONE", "IRREMOVABLE" ]
   },
   {
     "id": "combination_gun_shotgun_pipe",
