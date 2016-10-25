@@ -20,7 +20,7 @@
     "pierce": 8,
     "dispersion": 40,
     "recoil": 580,
-    "effects" [ "COOKOFF" ]
+    "effects": [ "COOKOFF" ]
     }
   },
   {
