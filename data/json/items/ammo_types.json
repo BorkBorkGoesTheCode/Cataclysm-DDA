@@ -84,6 +84,12 @@
         "default" : "38_special"
     },
     {
+        "type": "ammunition_type",
+        "id": "357_mag",
+        "name": ".357 Magnum",
+        "default": "357"
+    },
+    {
         "type" : "ammunition_type",
         "id" : "40",
         "name" : ".40",
