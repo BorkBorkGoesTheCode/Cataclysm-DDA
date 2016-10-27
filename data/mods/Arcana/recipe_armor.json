@@ -11,7 +11,6 @@
   "book_learn": [[ "book_hexenhammer", 5 ]],
   "qualities":[{"id":"HAMMER","level":2}],
   "tools": [
-    [ ["book_hexenhammer", -1] ],
     [
       [ "sewing_kit", 18 ]
     ]
@@ -37,7 +36,6 @@
     {"id":"CUT","level":1}
   ],
   "tools": [
-    [ ["book_hexenhammer", -1] ],
     [
       [ "sewing_kit", 9 ]
     ]
