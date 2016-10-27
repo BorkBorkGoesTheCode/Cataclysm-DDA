@@ -430,6 +430,21 @@
         "ammo_type" : "components",
         "count" : 100
     },
+    {
+        "type": "AMMO",
+        "id": "762_25_casing",
+        "category": "spare_parts",
+        "price": 10000,
+        "name": "7.62x25 casing",
+        "symbol": "=",
+        "color": "yellow",
+        "description": "An empty casing from a 7.62x25 round",
+        "material": "steel",
+        "volume": 1,
+        "weight": 4,
+        "ammo_type": "components",
+        "count":  100
+    },
     {   "type" : "AMMO",
         "id" : "9x18mm_casing",
         "category" : "spare_parts",
