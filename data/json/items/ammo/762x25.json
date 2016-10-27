@@ -47,9 +47,9 @@
     "//": "Stopgap price of $1 per.  Anti-China prejudice in the pre-Cataclysm US may have made this ammo tougher to come by.",
     "description": "A subsonic cartridge derived from the 7.62x25mm, designed for silenced firearms.  It offers good armor penetration at the cost of slightly less damage.",
     "weight": 12,
-    "price": 5000,
     "count": 50,
     "relative": {
+      "price": 2000,
       "range": -1,
       "damage": -9,
       "pierce": 2,
