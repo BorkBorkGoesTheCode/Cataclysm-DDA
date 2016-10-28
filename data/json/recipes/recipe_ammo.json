@@ -842,7 +842,48 @@
         ["scrap", 8]
       ]
   ]
-},{
+},
+{
+    "type": "recipe",
+    "result": "reloaded_762_25hot",
+    "catgory": "CC_AMMO",
+    "subcategory": "CC_AMMO_PISTOL",
+    "skills_used": "fabrication",
+    "skills_required": [ "gun", 4 ],
+    "difficulty": 5,
+    "time": 14000,
+    "book_learn": [["recipes_bullets", 4 ], [ "manual_pistol", 4 ]],
+    "tools": [
+        [
+            [ "press", -1 ]
+        ],
+        [
+            [ "fire", -1 ],
+            [ "toolset", 2 ],
+            [ "press", 2 ]
+        ]
+    ],
+    "components": [
+        [
+            [ "762_25_casing", 40 ]
+        ],
+        [
+            [ "smpistol_primer", 40 ]
+        ],
+        [
+            [ "gunpowder", 200 ]
+        ],
+        [
+            [ "lead", 73 ],
+            [ "gold_small", 50 ],
+            [ "silver_small", 73 ],
+            [ "tin", 75 ],
+            [ "bismuth", 110 ],
+            [ "solder_wire", 160 ]
+        ]
+    ]
+},
+{
    "type" : "recipe",
   "result": "reloaded_9x18mm",
   "category": "CC_AMMO",
