@@ -21,7 +21,7 @@
     "id": "ppshmag",
     "type": "MAGAZINE",
     "name": "PPSh 35-round magazine",
-    "//": "Also provisional."
+    "//": "Also provisional.",
     "description": "A 35-round box magazine for the PPSh-41.",
     "weight": 470,
     "volume": 2,
