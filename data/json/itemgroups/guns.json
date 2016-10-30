@@ -134,6 +134,7 @@
     "id": "guns_rifle_common",
     "//": "Rifles commonly owned by citizens and found in many locations.",
     "items": [
+      [ "bb_gun", 80 ],
       [ "browning_blr", 25 ],
       [ "garand", 65 ],
       [ "ar15", 30 ],
