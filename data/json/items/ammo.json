@@ -438,7 +438,7 @@
         "name": "7.62x25 casing",
         "symbol": "=",
         "color": "yellow",
-        "description": "An empty casing from a 7.62x25 round",
+        "description": "An empty casing from a 7.62x25 round.",
         "material": "steel",
         "volume": 1,
         "weight": 4,
