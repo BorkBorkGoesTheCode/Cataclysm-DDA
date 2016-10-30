@@ -8,10 +8,9 @@
         "symbol" : "=",
         "color" : "dark_gray",
         "description" : "Inspired by the improved .270, Alexander Sarafanov himself developed the 6.54x42mm rifle cartridge for his new SVS-24 Assault Rifle.",
-        "material" : "steel",
+        "material" : [ "steel", "powder" ],
         "volume" : 1,
         "weight" : 6,
-        "bashing" : 1,
         "ammo_type" : "654",
         "casing" : "654_casing",
         "damage" : 40,
@@ -25,25 +24,15 @@
     {
         "type" : "AMMO",
         "id" : "654t",
+        "copy-from": "654",
         "price" : 6800,
         "name" : "6.54x42mm 9N12",
         "name_plural" : "6.54x42mm 9N12",
-        "symbol" : "=",
-        "color" : "dark_gray",
         "description" : "The 6.54x42mm 9N12 has superior amror piercing capabilities thanks to it's tungsten carbide core.  Tungsten carbide was used in anti-tank rounds of the 20th and 21st century.",
-        "material" : "steel",
-        "volume" : 1,
-        "weight" : 6,
-        "bashing" : 1,
-        "ammo_type" : "654",
-        "casing" : "654_casing",
-        "damage" : 36,
-        "pierce" : 32,
-        "range" : 38,
-        "dispersion" : 5,
-        "recoil" : 1500,
-        "count" : 30,
-        "effects" : ["COOKOFF"]
+        "proportional": {
+            "damage": 0.9,
+            "pierce": 4.0
+        }
     },
     {
         "type" : "AMMO",
@@ -57,11 +46,7 @@
         "material" : "steel",
         "volume" : 1,
         "weight" : 5,
-        "bashing" : 1,
         "ammo_type" : "components",
-        "damage" : 0,
-        "range" : 0,
-        "dispersion" : 0,
         "count" : 200
     },
     {
