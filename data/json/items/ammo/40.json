@@ -6,13 +6,14 @@
     "name": "10mm Auto",
     "name_plural": "10mm Auto",
     "description": "10mm Auto ammunition with 180gr FMJ bullets.  The 10mm Auto round is one of the most powerful pistol cartridges available, although its usefulness is limited by high recoil.",
-    "price": 2900,
     "count": 20,
+    "stack_size": 35,
     "relative": {
+      "price": 100,
       "damage": 4,
       "pierce": 4,
       "dispersion": -10,
-      "recoil": 20
+      "recoil": 340
     }
   },
   {
