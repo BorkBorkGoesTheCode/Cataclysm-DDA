@@ -30,7 +30,7 @@
         "symbol" : "=",
         "color" : "dark_gray",
         "description" : "The 6.54x42mm 9N12 has superior amror piercing capabilities thanks to it's tungsten carbide core.  Tungsten carbide was used in anti-tank rounds of the 20th and 21st century.",
-        "material" : [ "brass", "powder" ]
+        "material" : [ "brass", "powder" ],
         "volume" : 1,
         "weight" : 6,
         "ammo_type" : "654",
