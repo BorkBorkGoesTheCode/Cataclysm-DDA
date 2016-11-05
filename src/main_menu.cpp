@@ -1,10 +1,10 @@
+#include "main_menu.h"
+
 #include "game.h"
 #include "player.h"
 #include "gamemode.h"
 #include "debug.h"
-#include "input.h"
 #include "mapbuffer.h"
-#include "cursesdef.h"
 #include "overmapbuffer.h"
 #include "translations.h"
 #include "catacharset.h"
@@ -30,11 +30,9 @@
 
 #define dbg(x) DebugLog((DebugLevel)(x),D_GAME) << __FILE__ << ":" << __LINE__ << ": "
 
-namespace
-{
 
-void print_menu_items( WINDOW *w_in, std::vector<std::string> vItems, size_t iSel,
-                       int iOffsetY, int iOffsetX, int spacing = 1 )
+void main_menu::print_menu_items( WINDOW *w_in, std::vector<std::string> vItems, size_t iSel,
+                                  int iOffsetY, int iOffsetX, int spacing )
 {
     mvwprintz( w_in, iOffsetY, iOffsetX, c_black, "" );
     for( size_t i = 0; i < vItems.size(); ++i ) {
@@ -57,16 +55,8 @@ void print_menu_items( WINDOW *w_in, std::vector<std::string> vItems, size_t iSe
     }
 }
 
-} // namespace
-
-static std::vector<std::string> mmenu_title;
-static std::vector<std::string> mmenu_motd;
-static std::vector<std::string> mmenu_credits;
-static std::vector<std::string> vMenuItems;
-static std::vector<std::vector<std::string>> vMenuHotkeys;
-
-void game::print_menu( WINDOW *w_open, int iSel, const int iMenuOffsetX, int iMenuOffsetY,
-                       bool bShowDDA )
+void main_menu::print_menu( WINDOW *w_open, int iSel, const int iMenuOffsetX, int iMenuOffsetY,
+                            bool bShowDDA )
 {
     // Clear Lines
     werase( w_open );
@@ -131,7 +121,8 @@ void game::print_menu( WINDOW *w_open, int iSel, const int iMenuOffsetX, int iMe
     refresh();
 }
 
-std::vector<std::string> load_file( const std::string &path, const std::string &alternative_text )
+std::vector<std::string> main_menu::load_file( const std::string &path,
+        const std::string &alt_text ) const
 {
     std::vector<std::string> result;
     read_from_file_optional( path, [&result]( std::istream & fin ) {
@@ -144,29 +135,29 @@ std::vector<std::string> load_file( const std::string &path, const std::string &
         }
     } );
     if( result.empty() ) {
-        result.push_back( alternative_text );
+        result.push_back( alt_text );
     }
     return result;
 }
 
-void game::mmenu_refresh_title()
+void main_menu::mmenu_refresh_title()
 {
     mmenu_title = load_file( PATH_INFO::find_translated_file( "titledir", ".title", "title" ),
                              _( "Cataclysm: Dark Days Ahead" ) );
 }
 
-void game::mmenu_refresh_motd()
+void main_menu::mmenu_refresh_motd()
 {
     mmenu_motd = load_file( PATH_INFO::find_translated_file( "motddir", ".motd", "motd" ),
                             _( "No message today." ) );
 }
 
-void game::mmenu_refresh_credits()
+void main_menu::mmenu_refresh_credits()
 {
     mmenu_credits.clear();
     std::vector<std::string> buffer;
     read_from_file_optional( PATH_INFO::find_translated_file( "creditsdir", ".credits",
-    "credits" ), [&buffer]( std::istream & stream ) {
+    "credits" ), [&buffer, this]( std::istream & stream ) {
         std::string line;
         while( std::getline( stream, line ) ) {
             if( line[0] == '#' ) {
@@ -196,7 +187,7 @@ void game::mmenu_refresh_credits()
     }
 }
 
-std::vector<std::string> get_hotkeys( const std::string &s )
+std::vector<std::string> main_menu::get_hotkeys( const std::string &s )
 {
     std::vector<std::string> hotkeys;
     size_t start = s.find_first_of( '<' );
@@ -215,7 +206,7 @@ std::vector<std::string> get_hotkeys( const std::string &s )
     return hotkeys;
 }
 
-void display_credits()
+void main_menu::display_credits()
 {
     // astyle got this redundant indent
     WINDOW *w_credits_border = newwin( FULL_SCREEN_HEIGHT, FULL_SCREEN_WIDTH,
@@ -233,7 +224,7 @@ void display_credits()
     refresh();
 }
 
-bool game::opening_screen()
+bool main_menu::opening_screen()
 {
     // Play title music, whoo!
     play_music( "title" );
@@ -242,14 +233,14 @@ bool game::opening_screen()
     // This actually _loads_ what worlds exist.
     world_generator->get_all_worlds();
 
-    WINDOW *w_background = newwin( TERMY, TERMX, 0, 0 );
+    w_background = newwin( TERMY, TERMX, 0, 0 );
     WINDOW_PTR w_backgroundptr( w_background );
     werase( w_background );
     wrefresh( w_background );
 
     // main window should also expand to use available display space.
     // expanding to evenly use up half of extra space, for now.
-    int extra_w = ( ( TERMX - FULL_SCREEN_WIDTH ) / 2 ) - 1;
+    extra_w = ( ( TERMX - FULL_SCREEN_WIDTH ) / 2 ) - 1;
     int extra_h = ( ( TERMY - FULL_SCREEN_HEIGHT ) / 2 ) - 1;
     extra_w = ( extra_w > 0 ? extra_w : 0 );
     extra_h = ( extra_h > 0 ? extra_h : 0 );
@@ -260,11 +251,10 @@ bool game::opening_screen()
     const int x0 = ( TERMX - total_w ) / 2;
     const int y0 = ( TERMY - total_h ) / 2;
 
-    WINDOW *w_open = newwin( total_h, total_w, y0, x0 );
+    w_open = newwin( total_h, total_w, y0, x0 );
     WINDOW_PTR w_openptr( w_open );
 
-    const int iMenuOffsetX = 0;
-    int iMenuOffsetY = total_h - 3;
+    iMenuOffsetY = total_h - 3;
     // note: if iMenuOffset is changed,
     // please update MOTD and credits to indicate how long they can be.
 
@@ -284,18 +274,6 @@ bool game::opening_screen()
     vMenuHotkeys.clear();
     for( auto item : vMenuItems ) {
         vMenuHotkeys.push_back( get_hotkeys( item ) );
-    }
-
-    std::vector<std::string> vSubItems;
-    vSubItems.push_back( pgettext( "Main Menu|New Game", "<C|c>ustom Character" ) );
-    vSubItems.push_back( pgettext( "Main Menu|New Game", "<P|p>reset Character" ) );
-    vSubItems.push_back( pgettext( "Main Menu|New Game", "<R|r>andom Character" ) );
-    if( !MAP_SHARING::isSharing() ) { // "Play Now" function doesn't play well together with shared maps
-        vSubItems.push_back( pgettext( "Main Menu|New Game", "Play <N|n>ow!" ) );
-    }
-    std::vector<std::vector<std::string>> vNewGameHotkeys;
-    for( auto item : vSubItems ) {
-        vNewGameHotkeys.push_back( get_hotkeys( item ) );
     }
 
     std::vector<std::string> vWorldSubItems;
@@ -322,7 +300,7 @@ bool game::opening_screen()
     mmenu_refresh_title();
     print_menu( w_open, 0, iMenuOffsetX, iMenuOffsetY );
 
-    std::vector<std::string> savegames, templates;
+    std::vector<std::string> savegames;
     dirent *dp;
     DIR *dir;
 
@@ -349,8 +327,6 @@ bool game::opening_screen()
     }
     closedir( dir );
 
-    int sel1 = 1, sel2 = 1, sel3 = 1, layer = 1;
-    input_context ctxt( "MAIN_MENU" );
     ctxt.register_cardinal();
     ctxt.register_action( "QUIT" );
     ctxt.register_action( "CONFIRM" );
@@ -363,7 +339,12 @@ bool game::opening_screen()
     mmenu_refresh_motd();
     mmenu_refresh_credits();
 
-    u = player();
+    g->u = player();
+
+    // Make [Load Game] the default cursor position if there's game save available
+    if( !world_generator->all_worldnames.empty() ) {
+        sel1 = 2;
+    }
 
     while( !start ) {
         print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY, ( sel1 != 0 ) );
@@ -393,7 +374,7 @@ bool game::opening_screen()
             }
             // also check special keys
             if( action == "QUIT" ) {
-                if( query_yn( "Really quit?" ) ) {
+                if( query_yn( _( "Really quit?" ) ) ) {
                     sel1 = 8;
                     action = "CONFIRM";
                 }
@@ -418,87 +399,23 @@ bool game::opening_screen()
                 } else if( sel1 == 7 ) {
                     display_credits();
                 } else if( sel1 == 8 ) {
-                    uquit = QUIT_MENU;
                     return false;
                 } else {
                     sel2 = 0;
                     layer = 2;
                     print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY, ( sel1 != 0 ) );
+
+                    switch( sel1 ) {
+                        case 1:
+                            start = new_character_tab();
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
         } else if( layer == 2 ) {
-            if( sel1 == 1 ) { // New Character
-                if( MAP_SHARING::isSharing() &&
-                    world_generator->all_worlds.empty() ) { //don't show anything when there are no worlds (will not work if there are special maps)
-                    layer = 1;
-                    sel1 = 1;
-                    continue;
-                }
-
-                print_menu_items( w_open, vSubItems, sel2, iMenuOffsetY - 2, iMenuOffsetX );
-                wrefresh( w_open );
-                refresh();
-
-                std::string action = ctxt.handle_input();
-                std::string sInput = ctxt.get_raw_input().text;
-                for( size_t i = 0; i < vNewGameHotkeys.size(); ++i ) {
-                    for( auto hotkey : vNewGameHotkeys[i] ) {
-                        if( sInput == hotkey ) {
-                            sel2 = i;
-                            action = "CONFIRM";
-                        }
-                    }
-                }
-                if( action == "LEFT" ) {
-                    sel2--;
-                    if( sel2 < 0 ) {
-                        sel2 = vSubItems.size() - 1;
-                    }
-                } else if( action == "RIGHT" ) {
-                    sel2++;
-                    if( sel2 >= ( int )vSubItems.size() ) {
-                        sel2 = 0;
-                    }
-                } else if( action == "DOWN" || action == "QUIT" ) {
-                    layer = 1;
-                    sel1 = 1;
-                }
-                if( action == "UP" || action == "CONFIRM" ) {
-                    if( sel2 == 0 || sel2 == 2 || sel2 == 3 ) {
-                        // First load the mods, this is done by
-                        // loading the world.
-                        // Pick a world, suppressing prompts if it's "play now" mode.
-                        WORLDPTR world = world_generator->pick_world( sel2 != 3 );
-                        if( world == NULL ) {
-                            continue;
-                        }
-                        world_generator->set_active_world( world );
-                        try {
-                            setup();
-                        } catch( const std::exception &err ) {
-                            debugmsg( "Error: %s", err.what() );
-                            u = player();
-                            continue;
-                        }
-                        if( !u.create( sel2 == 0 ? PLTYPE_CUSTOM : ( sel2 == 2 ? PLTYPE_RANDOM : PLTYPE_NOW ) ) ) {
-                            u = player();
-                            continue;
-                        }
-
-                        werase( w_background );
-                        wrefresh( w_background );
-
-                        if( !start_game( world->world_name ) ) {
-                            u = player();
-                            continue;
-                        }
-                        start = true;
-                    } else if( sel2 == 1 ) {
-                        layer = 3;
-                        sel3 = 0;
-                    }
-                }
-            } else if( sel1 == 2 ) { // Load Character
+            if( sel1 == 2 ) { // Load Character
                 if( world_generator->all_worldnames.empty() ) {
                     mvwprintz( w_open, iMenuOffsetY - 2, 15 + iMenuOffsetX + extra_w / 2,
                                c_red, _( "No Worlds found!" ) );
@@ -613,6 +530,8 @@ bool game::opening_screen()
                     if( sel2 == 0 ) { // Create world
                         // Open up world creation screen!
                         if( world_generator->make_new_world() ) {
+                            // TODO: This is extremely hacky
+                            *this = main_menu();
                             return opening_screen();
                         } else {
                             layer = 1;
@@ -661,7 +580,7 @@ bool game::opening_screen()
                 }
                 if( action == "UP" || action == "CONFIRM" ) {
                     if( sel2 >= 0 && sel2 < NUM_SPECIAL_GAMES - 1 ) {
-                        gamemode = get_special_game( special_game_id( sel2 + 1 ) );
+                        g->gamemode = get_special_game( special_game_id( sel2 + 1 ) );
                         // check world
                         WORLDPTR world = world_generator->make_new_world( special_game_id( sel2 + 1 ) );
                         if( world == NULL ) {
@@ -669,16 +588,16 @@ bool game::opening_screen()
                         }
                         world_generator->set_active_world( world );
                         try {
-                            setup();
+                            g->setup();
                         } catch( const std::exception &err ) {
                             debugmsg( "Error: %s", err.what() );
-                            gamemode.reset();
-                            u = player();
+                            g->gamemode.reset();
+                            g->u = player();
                             continue;
                         }
-                        if( !gamemode->init() ) {
-                            gamemode.reset();
-                            u = player();
+                        if( !g->gamemode->init() ) {
+                            g->gamemode.reset();
+                            g->u = player();
                             continue;
                         }
                         start = true;
@@ -731,6 +650,10 @@ bool game::opening_screen()
                 if( action == "UP" || action == "CONFIRM" ) {
                     if( sel2 == 0 ) {
                         get_options().show( true );
+                        // Refresh these since the language may have changed
+                        mmenu_refresh_title();
+                        mmenu_refresh_credits();
+                        mmenu_refresh_motd();
                     } else if( sel2 == 1 ) {
                         ctxt.display_help();
                     } else if( sel2 == 2 ) {
@@ -808,14 +731,14 @@ bool game::opening_screen()
                         WORLDPTR world = world_generator->all_worlds[world_generator->all_worldnames[sel2]];
                         world_generator->set_active_world( world );
                         try {
-                            setup();
+                            g->setup();
                         } catch( const std::exception &err ) {
                             debugmsg( "Error: %s", err.what() );
-                            u = player();
+                            g->u = player();
                             continue;
                         }
 
-                        load( world->world_name, savegames[sel3] );
+                        g->load( world->world_name, savegames[sel3] );
                         start = true;
                     }
                 }
@@ -875,7 +798,7 @@ bool game::opening_screen()
                         }
 
                         if( query_yes ) {
-                            delete_world( world_generator->all_worldnames[sel3], do_delete );
+                            g->delete_world( world_generator->all_worldnames[sel3], do_delete );
 
                             savegames.clear();
                             MAPBUFFER.reset();
@@ -895,96 +818,191 @@ bool game::opening_screen()
                             }
                         } else {
                             // hacky resolution to the issue of persisting world names on the screen
+                            // TODO: Use a non-hacky resolution
+                            *this = main_menu();
                             return opening_screen();
                         }
                     }
                     print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY );
-                }
-            } else { // Character Templates
-                if( templates.empty() ) {
-                    mvwprintz( w_open, iMenuOffsetY - 4, iMenuOffsetX + 20 + extra_w / 2,
-                               c_red, _( "No templates found!" ) );
-                } else {
-                    mvwprintz( w_open, iMenuOffsetY - 2, iMenuOffsetX + 20 + extra_w / 2,
-                               c_white, _( "Press 'd' to delete a preset." ) );
-                    for( int i = 0; i < ( int )templates.size(); i++ ) {
-                        int line = iMenuOffsetY - 4 - i;
-                        mvwprintz( w_open, line, 20 + iMenuOffsetX + extra_w / 2,
-                                   ( sel3 == i ? h_white : c_white ), templates[i].c_str() );
-                    }
-                }
-                wrefresh( w_open );
-                refresh();
-                std::string action = ctxt.handle_input();
-                if( action == "DOWN" ) {
-                    if( sel3 > 0 ) {
-                        sel3--;
-                    } else {
-                        sel3 = templates.size() - 1;
-                    }
-                } else if( templates.empty() && ( action == "UP" || action == "CONFIRM" ) ) {
-                    sel1 = 1;
-                    layer = 2;
-                    print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY );
-                } else if( action == "UP" ) {
-                    if( sel3 < ( int )templates.size() - 1 ) {
-                        sel3++;
-                    } else {
-                        sel3 = 0;
-                    }
-                } else if( action == "LEFT"  || action == "QUIT" || templates.empty() ) {
-                    sel1 = 1;
-                    layer = 2;
-                    print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY );
-                } else if( !templates.empty() && action == "DELETE_TEMPLATE" ) {
-                    if( query_yn( _( "Are you sure you want to delete %s?" ),
-                                  templates[sel3].c_str() ) ) {
-                        const auto path = FILENAMES["templatedir"] + templates[sel3] + ".template";
-                        if( std::remove( path.c_str() ) != 0 ) {
-                            popup( _( "Sorry, something went wrong." ) );
-                        } else {
-                            templates.erase( templates.begin() + sel3 );
-                            if( ( size_t )sel3 > templates.size() - 1 ) {
-                                sel3--;
-                            }
-                        }
-                    }
-                } else if( action == "RIGHT" || action == "CONFIRM" ) {
-                    WORLDPTR world = world_generator->pick_world();
-                    if( world == NULL ) {
-                        u = player();
-                        continue;
-                    }
-                    world_generator->set_active_world( world );
-                    try {
-                        setup();
-                    } catch( const std::exception &err ) {
-                        debugmsg( "Error: %s", err.what() );
-                        u = player();
-                        continue;
-                    }
-                    if( !u.create( PLTYPE_TEMPLATE, templates[sel3] ) ) {
-                        u = player();
-                        continue;
-                    }
-                    werase( w_background );
-                    wrefresh( w_background );
-                    if( !start_game( world_generator->active_world->world_name ) ) {
-                        u = player();
-                        continue;
-                    }
-                    start = true;
                 }
             }
         }
     }
     w_openptr.reset();
     w_backgroundptr.reset();
-    if( start == false ) {
-        uquit = QUIT_MENU;
-    } else {
-        refresh_all();
-        draw();
+    if( start ) {
+        g->refresh_all();
+        g->draw();
     }
+    return start;
+}
+
+bool main_menu::new_character_tab()
+{
+    std::vector<std::string> vSubItems;
+    vSubItems.push_back( pgettext( "Main Menu|New Game", "<C|c>ustom Character" ) );
+    vSubItems.push_back( pgettext( "Main Menu|New Game", "<P|p>reset Character" ) );
+    vSubItems.push_back( pgettext( "Main Menu|New Game", "<R|r>andom Character" ) );
+    if( !MAP_SHARING::isSharing() ) { // "Play Now" function doesn't play well together with shared maps
+        vSubItems.push_back( pgettext( "Main Menu|New Game", "Play <N|n>ow!" ) );
+    }
+    std::vector<std::vector<std::string>> vNewGameHotkeys;
+    for( auto item : vSubItems ) {
+        vNewGameHotkeys.push_back( get_hotkeys( item ) );
+    }
+
+    bool start = false;
+    while( !start && sel1 == 1 && ( layer == 2 || layer == 3 ) ) {
+        print_menu( w_open, 1, iMenuOffsetX, iMenuOffsetY, true );
+        if( layer == 2 && sel1 == 1 ) {
+            // Then choose custom character, random character, preset, etc
+            if( MAP_SHARING::isSharing() &&
+                world_generator->all_worlds.empty() ) { //don't show anything when there are no worlds (will not work if there are special maps)
+                layer = 1;
+                sel1 = 1;
+                continue;
+            }
+
+            print_menu_items( w_open, vSubItems, sel2, iMenuOffsetY - 2, iMenuOffsetX );
+            wrefresh( w_open );
+            refresh();
+
+            std::string action = ctxt.handle_input();
+            std::string sInput = ctxt.get_raw_input().text;
+            for( size_t i = 0; i < vNewGameHotkeys.size(); ++i ) {
+                for( auto hotkey : vNewGameHotkeys[i] ) {
+                    if( sInput == hotkey ) {
+                        sel2 = i;
+                        action = "CONFIRM";
+                    }
+                }
+            }
+            if( action == "LEFT" ) {
+                sel2--;
+                if( sel2 < 0 ) {
+                    sel2 = vSubItems.size() - 1;
+                }
+            } else if( action == "RIGHT" ) {
+                sel2++;
+                if( sel2 >= ( int )vSubItems.size() ) {
+                    sel2 = 0;
+                }
+            } else if( action == "DOWN" || action == "QUIT" ) {
+                layer = 1;
+                sel1 = 1;
+            }
+            if( action == "UP" || action == "CONFIRM" ) {
+                if( sel2 == 0 || sel2 == 2 || sel2 == 3 ) {
+                    // First load the mods, this is done by
+                    // loading the world.
+                    // Pick a world, suppressing prompts if it's "play now" mode.
+                    WORLDPTR world = world_generator->pick_world( sel2 != 3 );
+                    if( world == NULL ) {
+                        continue;
+                    }
+                    world_generator->set_active_world( world );
+                    try {
+                        g->setup();
+                    } catch( const std::exception &err ) {
+                        debugmsg( "Error: %s", err.what() );
+                        g->u = player();
+                        continue;
+                    }
+                    if( !g->u.create( sel2 == 0 ? PLTYPE_CUSTOM : ( sel2 == 2 ? PLTYPE_RANDOM : PLTYPE_NOW ) ) ) {
+                        g->u = player();
+                        continue;
+                    }
+
+                    werase( w_background );
+                    wrefresh( w_background );
+
+                    if( !g->start_game( world->world_name ) ) {
+                        g->u = player();
+                        continue;
+                    }
+                    start = true;
+                } else if( sel2 == 1 ) {
+                    layer = 3;
+                    sel3 = 0;
+                }
+            }
+        } else if( layer == 3 && sel1 == 1 ) {
+            // Then view presets
+            if( templates.empty() ) {
+                mvwprintz( w_open, iMenuOffsetY - 4, iMenuOffsetX + 20 + extra_w / 2,
+                           c_red, _( "No templates found!" ) );
+            } else {
+                mvwprintz( w_open, iMenuOffsetY - 2, iMenuOffsetX + 20 + extra_w / 2,
+                           c_white, _( "Press 'd' to delete a preset." ) );
+                for( int i = 0; i < ( int )templates.size(); i++ ) {
+                    int line = iMenuOffsetY - 4 - i;
+                    mvwprintz( w_open, line, 20 + iMenuOffsetX + extra_w / 2,
+                               ( sel3 == i ? h_white : c_white ), templates[i].c_str() );
+                }
+            }
+            wrefresh( w_open );
+            refresh();
+            std::string action = ctxt.handle_input();
+            if( action == "DOWN" ) {
+                if( sel3 > 0 ) {
+                    sel3--;
+                } else {
+                    sel3 = templates.size() - 1;
+                }
+            } else if( templates.empty() && ( action == "UP" || action == "CONFIRM" ) ) {
+                sel1 = 1;
+                layer = 2;
+                print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY );
+            } else if( action == "UP" ) {
+                if( sel3 < ( int )templates.size() - 1 ) {
+                    sel3++;
+                } else {
+                    sel3 = 0;
+                }
+            } else if( action == "LEFT"  || action == "QUIT" || templates.empty() ) {
+                sel1 = 1;
+                layer = 2;
+                print_menu( w_open, sel1, iMenuOffsetX, iMenuOffsetY );
+            } else if( !templates.empty() && action == "DELETE_TEMPLATE" ) {
+                if( query_yn( _( "Are you sure you want to delete %s?" ),
+                              templates[sel3].c_str() ) ) {
+                    const auto path = FILENAMES["templatedir"] + templates[sel3] + ".template";
+                    if( std::remove( path.c_str() ) != 0 ) {
+                        popup( _( "Sorry, something went wrong." ) );
+                    } else {
+                        templates.erase( templates.begin() + sel3 );
+                        if( ( size_t )sel3 > templates.size() - 1 ) {
+                            sel3--;
+                        }
+                    }
+                }
+            } else if( action == "RIGHT" || action == "CONFIRM" ) {
+                WORLDPTR world = world_generator->pick_world();
+                if( world == NULL ) {
+                    g->u = player();
+                    continue;
+                }
+                world_generator->set_active_world( world );
+                try {
+                    g->setup();
+                } catch( const std::exception &err ) {
+                    debugmsg( "Error: %s", err.what() );
+                    g->u = player();
+                    continue;
+                }
+                if( !g->u.create( PLTYPE_TEMPLATE, templates[sel3] ) ) {
+                    g->u = player();
+                    continue;
+                }
+                werase( w_background );
+                wrefresh( w_background );
+                if( !g->start_game( world_generator->active_world->world_name ) ) {
+                    g->u = player();
+                    continue;
+                }
+                start = true;
+            }
+        }
+    } // end while
     return start;
 }

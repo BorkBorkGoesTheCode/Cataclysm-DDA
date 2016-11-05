@@ -240,14 +240,19 @@ void monster::plan( const mfactions &factions )
     }
 
     for( size_t i = 0; i < g->active_npc.size(); i++ ) {
-        npc *me = g->active_npc[i];
-        float rating = rate_target( *me, dist, smart_planning );
-        bool fleeing_from = is_fleeing( *me );
+        npc &who = *g->active_npc[i];
+        auto faction_att = faction.obj().attitude( who.get_monster_faction() );
+        if( faction_att == MFA_NEUTRAL || faction_att == MFA_FRIENDLY ) {
+            continue;
+        }
+
+        float rating = rate_target( who, dist, smart_planning );
+        bool fleeing_from = is_fleeing( who );
         // Switch targets if closer and hostile or scarier than current target
         if( ( rating < dist && fleeing ) ||
-            ( rating < dist && attitude( me ) == MATT_ATTACK ) ||
+            ( rating < dist && attitude( &who ) == MATT_ATTACK ) ||
             ( !fleeing && fleeing_from ) ) {
-            target = me;
+            target = &who;
             dist = rating;
         }
         fleeing = fleeing || fleeing_from;
@@ -830,6 +835,11 @@ void monster::footsteps( const tripoint &p )
 
 tripoint monster::scent_move()
 {
+    // @todo Remove when scentmap is 3D
+    if( abs( posz() - g->get_levz() ) > 1 ) {
+        return { -1, -1, INT_MIN };
+    }
+
     std::vector<tripoint> smoves;
 
     int bestsmell = 10; // Squares with smell 0 are not eligible targets.
@@ -850,9 +860,10 @@ tripoint monster::scent_move()
         return next;
     }
     const bool can_bash = bash_skill() > 0;
-    for( const auto &dest : g->m.points_in_radius( pos(), 1 ) ) {
+    for( const auto &dest : g->m.points_in_radius( pos(), 1, 1 ) ) {
         int smell = g->scent.get( dest );
-        if( ( can_move_to( dest ) || ( dest == g->u.pos() ) ||
+        if( g->m.valid_move( pos(), dest, can_bash, true ) &&
+            ( can_move_to( dest ) || ( dest == g->u.pos() ) ||
               ( can_bash && g->m.bash_rating( bash_estimate(), dest ) > 0 ) ) ) {
             if( ( !fleeing && smell > bestsmell ) || ( fleeing && smell < bestsmell ) ) {
                 smoves.clear();

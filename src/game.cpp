@@ -118,7 +118,7 @@
 
 #define dbg(x) DebugLog((DebugLevel)(x),D_GAME) << __FILE__ << ":" << __LINE__ << ": "
 
-const int core_version = 4;
+const int core_version = 5;
 
 /** Will be set to true when running unit tests */
 bool test_mode = false;
@@ -215,7 +215,7 @@ game::game() :
     u_ptr( new player() ),
     liveview_ptr( new live_view() ),
     liveview( *liveview_ptr ),
-    scent_ptr( new scent_map() ),
+    scent_ptr( new scent_map( *this ) ),
     new_game(false),
     uquit(QUIT_NO),
     m( *map_ptr ),
@@ -1461,7 +1461,7 @@ bool game::do_turn()
                 cleanup_dead();
                 // Process any new sounds the player caused during their turn.
                 sounds::process_sound_markers( &u );
-                if (u.activity.type == ACT_NULL) {
+                if( !u.activity ) {
                     draw();
                 }
 
@@ -1477,7 +1477,7 @@ bool game::do_turn()
                 if (uquit == QUIT_WATCH) {
                     break;
                 }
-                if( u.activity.type != ACT_NULL ) {
+                if( u.activity ) {
                     process_activity();
                 }
             }
@@ -1646,7 +1646,7 @@ void game::process_events()
 
 void game::process_activity()
 {
-    if( u.activity.type == ACT_NULL ) {
+    if( !u.activity ) {
         return;
     }
 
@@ -1654,7 +1654,7 @@ void game::process_activity()
         draw();
     }
 
-    while( u.moves > 0 && u.activity.type != ACT_NULL ) {
+    while( u.moves > 0 && u.activity ) {
         u.activity.do_turn( &u );
     }
 }
@@ -1679,7 +1679,7 @@ void game::cancel_activity()
 
 bool game::cancel_activity_or_ignore_query(const char *reason, ...)
 {
-    if (u.activity.type == ACT_NULL) {
+    if( !u.activity ) {
         return false;
     }
     va_list ap;
@@ -1714,7 +1714,7 @@ bool game::cancel_activity_query(const char *message, ...)
     const std::string text = vstring_format(message, ap);
     va_end(ap);
 
-    if (ACT_NULL == u.activity.type) {
+    if( !u.activity ) {
         if (u.has_destination()) {
             add_msg(m_warning, _("%s. Auto-move canceled"), text.c_str());
             u.clear_destination();
@@ -1765,12 +1765,12 @@ void game::update_weather()
         nextweather = calendar::turn + 50; // Check weather each 50 turns.
         if (weather != old_weather && weather_data(weather).dangerous &&
             get_levz() >= 0 && m.is_outside(u.pos())
-            && !u.has_activity(ACT_WAIT_WEATHER)) {
+            && !u.has_activity( activity_id( "ACT_WAIT_WEATHER" ) ) ) {
             cancel_activity_query(_("The weather changed to %s!"), weather_data(weather).name.c_str());
         }
 
-        if (weather != old_weather && u.has_activity(ACT_WAIT_WEATHER)) {
-            u.assign_activity(ACT_WAIT_WEATHER, 0, 0);
+        if (weather != old_weather && u.has_activity( activity_id( "ACT_WAIT_WEATHER" ) ) ) {
+            u.assign_activity( activity_id( "ACT_WAIT_WEATHER" ), 0, 0);
         }
 
         if( weather_data( weather ).sight_penalty !=
@@ -1815,8 +1815,8 @@ void game::increase_kill_count( const mtype_id& id )
 void game::handle_key_blocking_activity()
 {
     // If player is performing a task and a monster is dangerously close, warn them
-    // regardless of previous safe mode warnings
-    if( u.activity.type != ACT_NULL && u.activity.type != ACT_AIM &&
+    // regardless of previous safemode warnings
+    if( u.activity && !u.has_activity( activity_id( "ACT_AIM" ) ) &&
         u.activity.moves_left > 0 && !u.activity.warned_of_proximity ) {
         Creature *hostile_critter = is_hostile_very_close();
         if (hostile_critter != nullptr) {
@@ -1828,7 +1828,7 @@ void game::handle_key_blocking_activity()
         }
     }
 
-    if (u.activity.moves_left > 0 && u.activity.is_abortable()) {
+    if( u.activity && u.activity.moves_left > 0 && u.activity.is_abortable() ) {
         input_context ctxt = get_default_mode_input_context();
         timeout(1);
         const std::string action = ctxt.handle_input();
@@ -3613,6 +3613,32 @@ void game::load_uistate(std::string worldname)
     using namespace std::placeholders;
     const auto savefile = world_generator->all_worlds[worldname]->world_path + "/uistate.json";
     read_from_file_optional( savefile, uistate );
+}
+
+bool game::load( const std::string &world ) {
+    auto opts = world_generator->get_all_worlds();
+
+    // check world exists and containts at least one valid save
+    auto iter = opts.find( world );
+    if( iter == opts.end() ) {
+        debugmsg( "unknown world '%s'", world.c_str() );
+        return false;
+    }
+    if( iter->second->world_saves.empty() ) {
+        debugmsg( "world '%s' contains no saves", world.c_str() );
+        return false;
+    }
+
+    try {
+        world_generator->set_active_world( iter->second );
+        g->setup();
+        g->load( world, iter->second->world_saves.front() );
+    } catch( const std::exception &err ) {
+        debugmsg( "cannot load world '%s': %s", world.c_str(), err.what() );
+        return false;
+    }
+
+    return true;
 }
 
 void game::load(std::string worldname, std::string name)
@@ -7340,7 +7366,7 @@ void game::smash()
         if ( maybe_corpse.is_corpse() && maybe_corpse.damage() < maybe_corpse.max_damage() &&
              maybe_corpse.get_mtype()->has_flag( MF_REVIVES ) ) {
             // do activity forever. ACT_PULP stops itself
-            u.assign_activity( ACT_PULP, INT_MAX, 0 );
+            u.assign_activity( activity_id( "ACT_PULP" ), calendar::INDEFINITELY_LONG, 0 );
             u.activity.placement = smashp;
             return; // don't smash terrain if we've smashed a corpse
         }
@@ -7478,7 +7504,7 @@ bool game::forced_door_closing( const tripoint &p, const ter_id door_type, int b
         } else if (npc_or_player->is_player()) {
             add_msg(m_bad, _("The %s hits you."), door_name.c_str());
         }
-        if( npc_or_player->activity.type != ACT_NULL ) {
+        if( npc_or_player->activity ) {
             npc_or_player->cancel_activity();
         }
         // TODO: make the npc angry?
@@ -8866,6 +8892,8 @@ tripoint game::look_around( WINDOW *w_info, const tripoint &start_point,
         ctxt.register_action("LIST_ITEMS");
         ctxt.register_action("MOUSE_MOVE");
     }
+
+    ctxt.register_action("debug_scent");
     ctxt.register_action("CONFIRM");
     ctxt.register_action("QUIT");
     ctxt.register_action("HELP_KEYBINDINGS");
@@ -9015,6 +9043,10 @@ tripoint game::look_around( WINDOW *w_info, const tripoint &start_point,
                 continue;
             }
             return { INT_MIN, INT_MIN, INT_MIN };
+        } else if( action == "debug_scent" ){
+            if( !MAP_SHARING::isCompetitive() || MAP_SHARING::isDebugger() ) {
+                display_scent();
+            }
         } else if (!ctxt.get_coordinates(w_terrain, lx, ly) && action != "MOUSE_MOVE") {
             int dx, dy;
             ctxt.get_direction(dx, dy, action);
@@ -9126,7 +9158,7 @@ void game::draw_item_filter_rules(WINDOW *window, int rows)
     mvwprintz(window, 7, 2, c_white, "%s", _("Example: -pipe,-chunk,-steel"));
 
     mvwprintz(window, 9, 2, c_white, "%s", _("Search [c]ategory or [m]aterial:"));
-    mvwprintz(window, 10, 2, c_white, "%s", _("Example: {c:food},{m:iron}"));
+    mvwprintz(window, 10, 2, c_white, "%s", _("Example: c:food,m:iron"));
     wrefresh(window);
 }
 
@@ -10212,11 +10244,11 @@ bool game::handle_liquid( item &liquid, item * const source, const int radius,
 
     const auto create_activity = [&]() {
         if( source_veh != nullptr ) {
-            u.assign_activity( ACT_FILL_LIQUID, INT_MAX );
+            u.assign_activity( activity_id( "ACT_FILL_LIQUID" ) );
             serialize_liquid_source( u.activity, *source_veh, liquid.typeId() );
             return true;
         } else if( source_pos != nullptr ) {
-            u.assign_activity( ACT_FILL_LIQUID, INT_MAX );
+            u.assign_activity( activity_id( "ACT_FILL_LIQUID" ) );
             serialize_liquid_source( u.activity, *source_pos, liquid );
             return true;
         } else {
@@ -10340,7 +10372,7 @@ bool game::handle_liquid( item &liquid, item * const source, const int radius,
         if( create_activity() ) {
             serialize_liquid_target( u.activity, target_pos );
         } else {
-            m.add_item_or_charges( target_pos, liquid, 1 );
+            m.add_item_or_charges( target_pos, liquid );
             liquid.charges = 0;
             u.mod_moves( -100 );
         }
@@ -10601,7 +10633,7 @@ bool game::plfire()
     std::vector<tripoint> trajectory = pl_target_ui( tmode, &u.weapon, range );
 
     if (trajectory.empty()) {
-        if( gun->has_flag( "RELOAD_AND_SHOOT" ) && u.activity.type != ACT_AIM ) {
+        if( gun->has_flag( "RELOAD_AND_SHOOT" ) && u.activity.id() != activity_id( "ACT_AIM" ) ) {
             const auto previous_moves = u.moves;
             unload( *gun );
             // Give back time for unloading as essentially nothing has been done at all.
@@ -10834,10 +10866,10 @@ void game::butcher()
     case BUTCHER_OTHER:
         switch( indexer_index ) {
         case MULTISALVAGE:
-            u.assign_activity( ACT_LONGSALVAGE, 0, salvage_tool_index );
+            u.assign_activity( activity_id( "ACT_LONGSALVAGE" ), 0, salvage_tool_index );
             break;
         case MULTIBUTCHER:
-            u.assign_activity( ACT_BUTCHER, 0, -1 );
+            u.assign_activity( activity_id( "ACT_BUTCHER" ), 0, -1 );
             for( int i : corpses ) {
                 u.activity.values.push_back( i );
             }
@@ -10857,7 +10889,7 @@ void game::butcher()
         {
             draw_ter();
             int index = corpses[indexer_index];
-            u.assign_activity( ACT_BUTCHER, 0, -1 );
+            u.assign_activity( activity_id( "ACT_BUTCHER" ), 0, -1 );
             u.activity.values.push_back( index );
         }
         break;
@@ -11018,7 +11050,7 @@ void game::reload( int pos, bool prompt )
 
     item::reload_option opt = u.select_ammo( *it, prompt );
     if( opt ) {
-        u.assign_activity( ACT_RELOAD, opt.moves(), opt.qty() );
+        u.assign_activity( activity_id( "ACT_RELOAD" ), opt.moves(), opt.qty() );
         u.activity.targets.emplace_back( u, const_cast<item *>( opt.target ) );
         u.activity.targets.push_back( std::move( opt.ammo ) );
     }
@@ -11035,7 +11067,7 @@ void game::reload()
         if( veh && ( turret = veh->turret_query( u.pos() ) ) && turret.can_reload() ) {
             item::reload_option opt = g->u.select_ammo( *turret.base(), true );
             if( opt ) {
-                g->u.assign_activity( ACT_RELOAD, opt.moves(), opt.qty() );
+                g->u.assign_activity( activity_id( "ACT_RELOAD" ), opt.moves(), opt.qty() );
                 g->u.activity.targets.emplace_back( turret.base() );
                 g->u.activity.targets.push_back( std::move( opt.ammo ) );
             }
@@ -11291,8 +11323,7 @@ void game::wield( int pos )
 void game::read()
 {
     // Can read items from inventory or within one tile (including in vehicles)
-    auto loc = inv_map_splice( []( const item &it ) { return it.is_book(); }, _( "Read:" ), 1,
-                                _( "You have nothing to read." ) );
+    auto loc = inv_for_books( _( "Read:" ) );
 
     item *book = loc.get_item();
     if( !book ) {
@@ -13124,7 +13155,8 @@ void game::vertical_move(int movez, bool force)
         shift_monsters( 0, 0, movez );
     }
 
-    std::vector<npc*> npcs_to_bring;
+    std::vector<npc *> npcs_to_bring;
+    std::vector<monster *> monsters_following;
     if( !m.has_zlevels() && abs( movez ) == 1 ) {
         std::copy_if( active_npc.begin(), active_npc.end(), back_inserter( npcs_to_bring ),
                       [this]( npc *np ) {
@@ -13132,8 +13164,18 @@ void game::vertical_move(int movez, bool force)
         } );
     }
 
+    if( m.has_zlevels() && abs( movez ) == 1 ) {
+        for( size_t i = 0; i < num_zombies(); i++ ) {
+            monster &critter = zombie( i );
+            if( critter.attack_target() == &g->u ) {
+                monsters_following.push_back( &critter );
+            }
+        }
+    }
+
     u.moves -= move_cost;
 
+    const tripoint old_pos = g->u.pos();
     vertical_shift( z_after );
     if( !force ) {
         update_map( stairs.x, stairs.y );
@@ -13166,6 +13208,14 @@ void game::vertical_move(int movez, bool force)
         }
 
         reload_npcs();
+    }
+
+    // This ugly check is here because of stair teleport bullshit
+    // @todo Remove stair teleport bullshit
+    if( rl_dist( g->u.pos(), old_pos ) <= 1 ) {
+        for( monster *m : monsters_following ) {
+            m->set_dest( g->u.pos() );
+        }
     }
 
     if( rope_ladder ) {
@@ -13842,17 +13892,11 @@ void game::wait()
         return;
     }
 
-    activity_type actType = ( as_m.ret == 11 ) ? ACT_WAIT_WEATHER : ACT_WAIT;
+    activity_id actType = activity_id( as_m.ret == 11 ? "ACT_WAIT_WEATHER" : "ACT_WAIT" );
 
     player_activity new_act( actType, 100 * ( durations[as_m.ret] - 1 ), 0 );
 
     u.assign_activity( new_act, false );
-    u.rooted_message();
-}
-
-bool game::game_quit()
-{
-    return (uquit == QUIT_MENU);
 }
 
 bool game::game_error()
@@ -14157,7 +14201,7 @@ void game::display_scent()
         return;
     };
     draw_ter();
-    scent.draw( w_terrain, div * 2, u.pos() );
+    scent.draw( w_terrain, div * 2, u.pos() + u.view_offset );
     wrefresh(w_terrain);
     getch();
 }
@@ -14676,4 +14720,13 @@ overmap &game::get_cur_om() const
     const tripoint sm = m.get_abs_sub() + tripoint( MAPSIZE / 2, MAPSIZE / 2, 0 );
     const tripoint pos_om = sm_to_om_copy( sm );
     return overmap_buffer.get( pos_om.x, pos_om.y );
+}
+
+std::vector<npc *> game::allies()
+{
+    std::vector<npc *> res;
+    std::copy_if( active_npc.begin(), active_npc.end(), std::back_inserter( res ), []( const npc *e ) {
+        return !e->is_dead_state() && e->is_friend();
+    } );
+    return res;
 }
