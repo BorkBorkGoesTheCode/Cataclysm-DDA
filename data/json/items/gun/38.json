@@ -26,6 +26,7 @@
   },
   {
     "id": "cop_38",
+    "copy-from": "pistol_base",
     "type": "GUN",
     "name": "COP .38",
     "name_plural": "COP .38",
@@ -36,8 +37,6 @@
     "to_hit": -1,
     "bashing": 5,
     "material": [ "steel", "wood" ],
-    "symbol": "(",
-    "color": "light_gray",
     "ammo": "38",
     "skill": "pistol",
     "range": 3,
