@@ -212,8 +212,8 @@
     "description": "A home-made triple-barreled firearm, one barrel chambered in .30-06 and two other for shotgun shells.  It is simply three pipes attached to a stock, with a trio of hammers to strike the three rounds it holds.",
     "price": 40000, "//": "Part of price shifted to integral mod.",
     "material": ["steel", "wood"],
-    "flags": ["RELOAD_ONE", "NEVER_JAMS", "RELOAD_EJECT"],
-    "skill": "shotgun",
+    "flags": ["NEVER_JAMS", "RELOAD_EJECT"],
+    "skill": "rifle",
     "ammo": "3006",
     "weight": 2267, "//": "Attached mod will now have weight.",
     "volume": 8,
@@ -225,7 +225,7 @@
     "loudness" : 25,
     "barrel_length" : 2,
     "built_in_mods" : ["combination_gun_shotgun_pipe"],
-    "valid_mod_locations": [[ "muzzle", 1 ],[ "stock", 1 ]]
+    "valid_mod_locations": [ [ "accessories", 4 ], [ "barrel", 1 ], [ "muzzle", 1 ], [ "sights", 1 ], [ "stock", 1 ], [ "underbarrel", 1 ] ]
   },
   {
     "id": "tihar",
