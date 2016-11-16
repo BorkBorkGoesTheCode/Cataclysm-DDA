@@ -1737,8 +1737,10 @@ item::sound_data item::gun_noise( bool const burst ) const
         return { noise, _( "Crack!" ) };
 
     } else if( noise > 0 ) {
-        if( noise < 10 ) {
-            return { noise, burst ? _( "Brrrip!" ) : _( "plink!" ) };
+        if( noise < 15 ) {
+            return { noise, burst ? _( "TstTstTstTstst!" ) : _( "plink!" ) };
+        } else if( noise < 75 ) {
+            return { noise, burst ? _( "Brrrip!" ) : _( "pop!" ) };
         } else if( noise < 150 ) {
             return { noise, burst ? _( "Brrrap!" ) : _( "bang!" ) };
         } else if(noise < 175 ) {
