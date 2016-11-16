@@ -1703,8 +1703,9 @@ item::sound_data item::gun_noise( bool const burst ) const
     } else if( typeId() == "hk_g80") {
         return { 24, _( "tz-CRACKck!" ) };
 
-    } else if( ammo_type() == ammotype( "gasoline" ) || ammo_type() == ammotype( "66mm" ) ||
-               ammo_type() == ammotype( "84x246mm" ) || ammo_type() == ammotype( "m235" ) ) {
+    } else if( ammo_type() == ammotype( "gasoline" ) || ammo_type() == ammotype( "napalm" ) ||
+               ammo_type() == ammotype( "66mm" ) || ammo_type() == ammotype( "84x246mm" ) ||
+               ammo_type() == ammotype( "m235" ) ) {
         return { 4, _( "Fwoosh!" ) };
     }
 
