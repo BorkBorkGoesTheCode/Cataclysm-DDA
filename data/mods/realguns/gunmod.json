@@ -8,6 +8,27 @@
     "extend": { "acceptable_ammo": [ "10mm_auto", "45lc" ] }
   },
   {
+    "id": "retool_38_super",
+    "type": "GUNMOD",
+    "name": ".38 Super caliber conversion kit",
+    "description": "",
+    "weight": 114,
+    "volume": 1,
+    "integral_volume": 0,
+    "price": 55000,
+    "material": "steel",
+    "symbol": ":",
+    "color": "light_gray",
+    "location": "bore",
+    "mod_targets": [ "pistol", "smg", "rifle" ],
+    "acceptable_ammo": [ "357_mag", "38", "40", "45", "9mm" ],
+    "install_time": 60000,
+    "dispersion_modifier": 15,
+    "ammo_modifier": "38_super",
+    "min_skills": [ [ "weapon", 3 ], [ "mechanics", 2 ] ],
+    "flags": [ "INSTALL_DIFFICULT", "IRREMOVABLE" ]
+  },
+  {
     "id": "retool_45",
     "copy-from": "retool_45",
     "type": "GUNMOD",
