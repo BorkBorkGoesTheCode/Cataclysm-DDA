@@ -34,6 +34,7 @@
 #include "item_group.h"
 #include "pathfinding.h"
 #include "scent_map.h"
+#include "cata_utility.h"
 
 #include <cmath>
 #include <stdlib.h>
@@ -409,16 +410,32 @@ bool map::vehact( vehicle &veh )
         veh.falling = false;
     }
 
-    // Mph lost per tile when coasting
-    int base_slowdown = veh.skidding ? 200 : 20;
+    double slowdown = 0.0;
     if( should_fall ) {
-        // Just air resistance
-        base_slowdown = 2;
+        // air resistance
+        slowdown = 2.0;
+
+    } else if( !veh.engine_on ) {
+        // if we don't have an active engine providing thrust then reduce velocity from friction
+        double k = 0.5 * veh.total_mass() * pow( veh.current_velocity(), 2 );
+        k -= k * friction_loss / veh.k_dynamics();
+        slowdown = veh.current_velocity() - sqrt( ( 2 * k ) / veh.total_mass() );
+
+        // always slow down by at least 1mph
+        slowdown = std::max( ms_to_mph( slowdown ) * 100, 100.0 );
     }
 
-    // k slowdown second.
-    const float k_slowdown = (0.1 + veh.k_dynamics()) / ((0.1) + veh.k_mass());
-    const int slowdown = veh.drag() + (int)ceil( k_slowdown * base_slowdown );
+    const float wheel_traction_area = vehicle_wheel_traction( veh );
+    const float traction = veh.k_traction( wheel_traction_area );
+
+    // apply crude decay when moving from high traction (road) to low traction (off-road)
+    // @todo replace with more correct acceleration model
+    slowdown += std::abs( veh.current_velocity() * ( 1.0 - traction ) );
+
+    if( veh.skidding ) {
+        slowdown = std::max( slowdown, veh.velocity / 3.0 );
+    }
+
     if( slowdown > abs( veh.velocity ) ) {
         veh.stop();
     } else if( veh.velocity < 0 ) {
@@ -437,8 +454,6 @@ bool map::vehact( vehicle &veh )
         return true;
     }
 
-    const float wheel_traction_area = vehicle_wheel_traction( veh );
-    const float traction = veh.k_traction( wheel_traction_area );
     // TODO: Remove this hack, have vehicle sink a z-level
     if( wheel_traction_area < 0 ) {
         add_msg(m_bad, _("Your %s sank."), veh.name.c_str());
@@ -2317,7 +2332,7 @@ void map::process_falling()
     }
 
     if( !support_cache_dirty.empty() ) {
-        add_msg( m_debug, "Checking %d tiles for falling objects",
+        add_msg( m_debug, "Checking %zu tiles for falling objects",
                  support_cache_dirty.size() );
         // We want the cache to stay constant, but falling can change it
         std::set<tripoint> last_cache = std::move( support_cache_dirty );
@@ -4502,7 +4517,7 @@ item &map::add_item_or_charges( const tripoint &pos, const item &obj, bool overf
         auto tiles = closest_tripoints_first( 2, pos );
         tiles.erase( tiles.begin() ); // we already tried this position
         for( const auto &e : tiles ) {
-            if( valid_tile( e ) && !has_flag( "NOITEM", pos ) && valid_limits( e ) ) {
+            if( valid_tile( e ) && !has_flag( "NOITEM", e ) && valid_limits( e ) ) {
                 return place_item( e );
             }
         }
@@ -5633,7 +5648,7 @@ void map::debug()
  for (int i = 0; i <= SEEX * 2; i++) {
   for (int j = 0; j <= SEEY * 2; j++) {
    if (i_at(i, j).size() > 0) {
-    mvprintw(1, 0, "%d, %d: %d items", i, j, i_at(i, j).size());
+    mvprintw(1, 0, "%d, %d: %zu items", i, j, i_at(i, j).size());
     mvprintw(2, 0, "%s, %d", i_at(i, j)[0].symbol().c_str(), i_at(i, j)[0].color());
     getch();
    }
@@ -6828,11 +6843,12 @@ void map::grow_plant( const tripoint &p )
 void map::restock_fruits( const tripoint &p, int time_since_last_actualize )
 {
     const auto &ter = this->ter( p ).obj();
-    //if the fruit-bearing season of the already harvested terrain has passed, make it harvestable again
     if( !ter.has_flag( TFLAG_HARVESTED ) ) {
-        return;
+        return; // Already harvestable. Do nothing.
     }
-    if( ter.get_harvest().empty() ||
+    // Make it harvestable again if the last actualization was during a different season or year.
+    const calendar last_touched = calendar::turn - time_since_last_actualize;
+    if( calendar::turn.get_season() != last_touched.get_season() ||
         time_since_last_actualize >= DAYS( calendar::season_length() ) ) {
         ter_set( p, ter.transforms_into );
     }
@@ -7676,7 +7692,7 @@ tripoint map::get_abs_sub() const
 submap *map::getsubmap( const size_t grididx ) const
 {
     if( grididx >= grid.size() ) {
-        debugmsg( "Tried to access invalid grid index %d. Grid size: %d", grididx, grid.size() );
+        debugmsg( "Tried to access invalid grid index %zu. Grid size: %zu", grididx, grid.size() );
         return nullptr;
     }
     return grid[grididx];
@@ -7685,10 +7701,10 @@ submap *map::getsubmap( const size_t grididx ) const
 void map::setsubmap( const size_t grididx, submap * const smap )
 {
     if( grididx >= grid.size() ) {
-        debugmsg( "Tried to access invalid grid index %d", grididx );
+        debugmsg( "Tried to access invalid grid index %zu", grididx );
         return;
     } else if( smap == nullptr ) {
-        debugmsg( "Tried to set NULL submap pointer at index %d", grididx );
+        debugmsg( "Tried to set NULL submap pointer at index %zu", grididx );
         return;
     }
     grid[grididx] = smap;
