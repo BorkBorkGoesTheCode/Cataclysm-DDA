@@ -16,8 +16,6 @@
     "volume": 1,
     "handling_modifier": -2,
     "acceptable_ammo": ["545x39"],
-    "mod_targets": ["rifle"],
-    "bashing": 2,
-    "ammo_modifier": "NULL"
+    "mod_targets": ["rifle"]
   }
 ]
