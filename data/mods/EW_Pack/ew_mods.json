@@ -17,6 +17,9 @@
     "internal_volume": 0,
     "handling_modifier": -2,
     "acceptable_ammo": [ "545x39", "762" ],
-    "mod_targets": ["rifle"]
+    "mod_targets": ["rifle"],
+    "install_time": 60000,
+    "min_skills": [ [ "weapon", 3 ], [ "rifle", 2 ] ],
+    "flags": [ "INSTALL_DIFFICULT", "IRREMOVABLE" ]
   }
 ]
