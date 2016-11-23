@@ -10,12 +10,13 @@
     "loudness_modifier": 1,
     "to_hit": -1,
     "price": 30000,
-    "description": "Mechanism that allows your CW-24 rifle to fire in fully automatic mode.  It is handmade.",
+    "description": "Mechanism that allows your 5.45x39 or 7.62x39 rifle to fire in fully automatic mode.  It is handmade.",
     "symbol": ":",
     "material": [ "steel" ],
     "volume": 1,
+    "internal_volume": 0,
     "handling_modifier": -2,
-    "acceptable_ammo": ["545x39"],
+    "acceptable_ammo": [ "545x39", "762" ],
     "mod_targets": ["rifle"]
   }
 ]
