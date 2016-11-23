@@ -21,5 +21,39 @@
     "install_time": 60000,
     "min_skills": [ [ "weapon", 3 ], [ "rifle", 2 ] ],
     "flags": [ "INSTALL_DIFFICULT", "IRREMOVABLE" ]
-  }
+  },
+  {
+    "id": "CW_handling",
+    "type": "GUNMOD",
+    "name": "CW handling system",
+    "description": "This weapod has an advanced integral recoil compensation system.",
+    "weight": 500,
+    "volume": 2,
+    "integral_volume": 0,
+    "price": 0,
+    "material": [ "steel" ],
+    "symbol": ":",
+    "color": "blue",
+    "location": "mechanism",
+    "mod_targets": [ "rifle" ],
+    "handling_modifier": 5,
+    "flags": [ "INSTALL_DIFFICULT", "IRREMOVABLE" ]
+  },
+  {
+    "id": "SVS_handling",
+    "type": "GUNMOD",
+    "name": "SVS handling",
+    "description": "This weapon has an advanced integral recoil system.",
+    "weight": 500,
+    "volume": 2,
+    "integral_volume": 0,
+    "price": 0,
+    "material": [ "steel" ],
+    "symbol": ":",
+    "color": "blue",
+    "location": "mechanism",
+    "mod_targets": [ "rifle" ],
+    "handling_modifier": 7,
+    "flags": [ "INSTALL_DIFFICULT", "IRREMOVABLE" ]
+  }   
 ]
