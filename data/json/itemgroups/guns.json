@@ -81,8 +81,6 @@
     "//": "SMGs commonly owned by citizens and found in many locations.",
     "items": [
       [ "american_180", 70 ],
-      [ "briefcase_smg", 20 ],
-      [ "sten", 100 ],
       [ "tec9", 100 ]
     ]
   },
@@ -107,6 +105,7 @@
     "id": "guns_smg_milspec",
     "//": "Military specification SMGs only ever found at military sites.",
     "items": [
+      [ "briefcase_smg", 20 ],
       [ "hk_mp7", 100 ],
       [ "needlegun", 30 ],
       [ "rm2000_smg", 50 ]
@@ -119,7 +118,8 @@
     "items": [
       [ "ppsh", 150 ],
       [ "skorpion_61", 100 ],
-      [ "skorpion_82", 100 ]
+      [ "skorpion_82", 100 ],
+      [ "sten", 150 ]
     ]
   },
   {
