@@ -22,7 +22,7 @@
   {
     "id": "makeshift_sword_bayonet",
     "copy-from": "sword_bayonet",
-    "type": "GUNMOD",
+    "type": "TOOL",
     "name": "makeshift sword bayonet",
     "description": "A makeshift version of a sword bayonet that consists of a salvaged blade with some string.  It still makes a good melee weapon providing reach attacks when attached to long arm or crossbow.",
     "proportional": {
