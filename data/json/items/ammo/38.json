@@ -20,7 +20,7 @@
     "weight": 8,
     "volume": 1,
     "price": 2200,
-    "material": [ "brass", "powder" ],
+    "material": [ "brass", "lead", "powder" ],
     "symbol": "=",
     "color": "yellow",
     "count": 40,
