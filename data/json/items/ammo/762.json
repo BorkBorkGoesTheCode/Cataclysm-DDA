@@ -8,7 +8,7 @@
     "weight": 13,
     "volume": 1,
     "price": 5200,
-    "material": [ "steel", "powder" ],
+    "material": [ "steel", "lead", "powder" ],
     "symbol": "=",
     "color": "dark_gray",
     "count": 30,
