@@ -19,7 +19,7 @@
     "weight": 50,
     "volume": 1,
     "price": 32500,
-    "material": [ "brass", "powder" ],
+    "material": [ "brass", "lead", "powder" ],
     "symbol": "=",
     "color": "dark_gray",
     "count": 25,
