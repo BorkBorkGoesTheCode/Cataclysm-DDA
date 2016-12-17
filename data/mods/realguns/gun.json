@@ -123,6 +123,33 @@
     "flags": [ "RELOAD_ONE" ]
   },
   {
+    "id": "m1911_38_super",
+    "copy-from": "m1911",
+    "type": "GUN",
+    "name": "M1911 .38 Super",
+    "description": "Like many other guns, the M1911 has been made in several different calibers. This one was made in the .38 Super caliber.",
+    "ammo": "38_super",
+    "magazines": [ [ "38_super", [ "m1911_38super" ] ] ]
+  },
+  {
+      "id": "af2011a1_38super",
+      "type": "GUN",
+      "name": "AF2011A1 .38 Super",
+      "description": "The AF2011A1 is very peculiar: it looks like a pair of Colt M1911s melded into a single pistol, with a siamese twin magazine.  This version can shoot .38 Super.",
+      "weight": 2000,
+      "volume": 4,
+      "price": 480000,
+      "to_hit": -1,
+      "bashing": 12,
+      "material": [ "steel", "plastic" ],
+      "color": "light_gray",
+      "ammo": "38_super",
+      "dispersion": 520,
+      "durability": 7,
+      "valid_mod_locations": [ [ "grip", 1 ] ],
+      "magazines": [ [ "45", [ "af2011a1_supermag" ] ] ]
+  },
+  {
     "id": "bond_410",
     "type": "GUN",
     "name": "Bond Arms Derringer",
