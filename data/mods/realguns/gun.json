@@ -185,5 +185,36 @@
     "barrel_length": 4,
     "valid_mod_locations": [ [ "accessories", 2 ], [ "stock", 1 ], [ "barrel", 1 ] ],
     "flags": [ "RELOAD_ONE", "NEVER_JAMS", "RELOAD_EJECT" ]
+  },
+  {
+    "id": "AF2011A1",
+    "type": "GUN",
+    "name": "AF2011A1",
+    "description": "Arsenal Firearms double-barrel semiautomatic pistol.  It look like two M1911s melde together.  This is the .38 Super version.",
+    "weight": 1710,
+    "volume": 4,
+    "price": 470000,
+    "to_hit": -2,
+    "bashing": 12,
+    "material": "steel",
+    "symbol": "(",
+    "color": "light_gray",
+    "ammo": "38_super",
+    "skill": "pistol",
+    "dispersion": 520,
+    "durability": 7,
+    "valid_mod_locations": [ [ "grip", 1 ] ]
+    "magazines": [ [ "38_super", [ "af2011a1_mag" ] ] ]
+  },
+  {
+    "id": "m1991_38super",
+    "copy-from": "m1911",
+    "type": "GUN",
+    "name": "M1991",
+    "description": "An updated Colt M1911.  It can achieve good accuracy with .38 Super cartridges.",
+    "weight": 1105,
+    "price": 87500,
+    "ammo": "38_super",
+    "magazines": [ [ "38_super", [ "m1911_38supermag" ] ] ]
   }
 ]
