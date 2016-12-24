@@ -203,7 +203,7 @@
     "skill": "pistol",
     "dispersion": 520,
     "durability": 7,
-    "valid_mod_locations": [ [ "grip", 1 ] ]
+    "valid_mod_locations": [ [ "grip", 1 ] ],
     "magazines": [ [ "38_super", [ "af2011a1_mag" ] ] ]
   },
   {
