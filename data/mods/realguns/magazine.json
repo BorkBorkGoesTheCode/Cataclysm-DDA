@@ -17,5 +17,37 @@
     "weight": 400,
     "volume": 3,
     "ammo_type": "410"
+  },
+  {
+    "id": "af2011a1_mag",
+    "type": "MAGAZINE",
+    "name": "AF2011A1 magazine",
+    "description": "todo",
+    "weight": 140,
+    "volume": 2,
+    "price": 5000,
+    "material": "steel",
+    "symbol": "#",
+    "color": "ltgray",
+    "ammo_type": "38_super",
+    "capacity": 16,
+    "reliability": 7,
+    "flags": [ "MAG_COMPACT" ]
+  },
+  {
+    "id": "m1911_38supermag",
+    "type": "MAGAZINE",
+    "name": "M1991 .38 Super magazine",
+    "description": "todo",
+    "weight": 80,
+    "volume": 1,
+    "price": 3750,
+    "material": "steel",
+    "symbol": "#",
+    "color": "ltgray",
+    "ammo_type": "38_super",
+    "capacity": 9,
+    "reliability": 8,
+    "flags": [ "MAG_COMPACT" ]
   }
 ]
