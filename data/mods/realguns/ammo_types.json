@@ -6,6 +6,12 @@
     "type": "ammunition_type"
   },
   {
+    "id": "30-30",
+    "name": ".30-30",
+    "default": "30_30",
+    "type": "ammunition_type"
+  },
+  {
     "id": "357_mag",
     "name": ".357 Magnum",
     "default": "357",
