@@ -1,5 +1,41 @@
 [
   {
+    "id": "30_30",
+    "type": "AMMO",
+    "name": "30-30 Winchester",
+    "name_plural": "30-30 Winchester",
+    "//": "+2 hollowpoint bonus to damage.",
+    "description": "A 30-30 cartridge loaded with a 150gr. hollowpoint bullet.  A very old hunting cartridge.",
+    "weight": 21,
+    "volume": 1,
+    "price": 3000,
+    "material": [ "brass", "powder" ],
+    "symbol": "=",
+    "color": "yellow",
+    "count": 20,
+    "stack_size": 25,
+    "ammo_type": "30-30",
+    "casing": "30_30_casing",
+    "range": 30,
+    "damage": 53,
+    "pierce": 2,
+    "dispersion": 70,
+    "recoil": 2560,
+    "effects": [ "COOKOFF" ]
+  },
+  {
+    "id": "reloaded_30_30",
+    "type": "AMMO",
+    "name": "reloaded 30-30 Winchester",
+    "name_plural": "reloaded 30-30 Winchester",
+    "proportional": {
+      "price": 0.7,
+      "damage": 0.9,
+      "dispersion": 1.1,
+      "recoil": 0.9
+    }
+  },
+  {
     "id": "357",
     "type": "AMMO",
     "name": ".357 Magnum",
