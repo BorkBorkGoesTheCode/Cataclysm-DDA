@@ -217,6 +217,16 @@
     }
   },
   {
+    "id": "30_30_casing",
+    "copy-from": "casing",
+    "type": "GENERIC",
+    "name": "30-30 WInchester casing",
+    "//": "provisional.",
+    "description": "An empty casing from a 30-30 WInchester round",
+    "weight": 10,
+    "volume": "9ml"
+  },
+  {
     "id": "357_mag_casing",
     "copy-from": "casing",
     "type": "GENERIC",
