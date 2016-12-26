@@ -35,6 +35,16 @@
     ]
   },
   {
+    "id": "ammo_rifle_common",
+    "type": "item_group",
+    "items": [ [ "30_30", 50 ] ]
+  },
+  {
+    "id": "ammo_rifle_reloaded",
+    "type": "item_group",
+    "items": [ [ "reloaded_30_30", 50 ] ]
+  },
+  {
     "id": "ammo_shotgun_common",
     "type": "item_group",
     "items": [ [ "410_birdshot", 60 ] ]
@@ -55,6 +65,11 @@
       [ "reloaded_410_shot", 15 ],
       [ "reloaded_410_slug", 15 ]
     ]
+  },
+  {
+    "id": "guns_rifle_common",
+    "type": "item_group",
+    "items": [ [ "win_1894", 45 ] ]
   },
   {
     "id": "guns_pistol_rare",
