@@ -1,5 +1,26 @@
 [
   {
+    "id": "win_1894",
+    "copy-from": "rifle_manual",
+    "type": "GUN",
+    "name": "Winchester Model 1894",
+    "name_plural": "Winchester Model 1894",
+    "description": "A lightweight lever-action rifle invented at the beginning of the smokeless age.",
+    "weight": 3085,
+    "volume": 7,
+    "price": 79000,
+    "to_hit": -1,
+    "bashing": 10,
+    "material": [ "steel", "wood" ],
+    "color": "brown",
+    "ammo": "30-30",
+    "dispersion": 150,
+    "durability": 8,
+    "clip_size": 6,
+    "valid_mod_locations": [ [ "accessories", 4 ], [ "barrel", 1 ], [ "bore", 1 ], [ "mechanism", 4 ], [ "sights", 1 ], [ "stock", 1 ], [ "underbarrel", 1 ] ]
+    "flags": [ "RELOAD_ONE", "NEVER_JAMS" ]
+  },
+  {
     "id": "cop_38",
     "copy-from": "cop_38",
     "type": "GUN",
