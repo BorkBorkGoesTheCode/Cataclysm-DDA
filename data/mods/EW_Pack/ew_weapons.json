@@ -34,6 +34,39 @@
     "flags": [ "MAG_COMPACT" ]
   },
   {
+    "id": "cwd-63mag",
+    "type": "MAGAZINE",
+    "name": "CWD-63 magazine",
+    "description": "A 10-round box magazine for the CWD-63 rifle.",
+    "weight": 100,
+    "volume": 1,
+    "price": 3450,
+    "material": [ "plastic", "steel" ],
+    "symbol": "#",
+    "color": "dark_gray",
+    "ammo_type": "308",
+    "capacity": 10,
+    "reliability": 10,
+    "reload_time": 80,
+    "flags": [ "MAG_COMPACT" ]
+  },
+  {
+    "id": "cwd-63bigmag",
+    "type": "MAGAZINE",
+    "name": "CWD-63 extended magazine",
+    "description": "An aftermarket 20-round magazine for the CWD-63 rifle.",
+    "weight": 160,
+    "volume": 2,
+    "price": 1500,
+    "material": "plastic",
+    "symbol": "#",
+    "color": "dark_gray",
+    "ammo_type": "308",
+    "capacity": 20,
+    "reliability": 7,
+    "flags": [ "MAG_COMPACT" ]
+  },
+  {
     "id": "svs-24",
     "type": "GUN",
     "symbol": "(",
@@ -195,11 +228,9 @@
     "bashing": 12,
     "to_hit": -1,
     "dispersion": 75,
-    "sight_dispersion": 60,
     "durability": 9,
-    "clip_size": 10,
-    "reload": 475,
-    "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]]
+    "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
+    "magazines": [ [ "308", [ "cwd-63mag", "cwd-63bigmag" ] ] ]
   },
   {
     "id": "wrist_dread",
