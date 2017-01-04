@@ -67,6 +67,40 @@
     "flags": [ "MAG_COMPACT" ]
   },
   {
+    "id": "svs_bigrobomag",
+    "type": "MAGAZINE",
+    "name": "SVS auto-drum magazine",
+    "description": "An auto-drum magazine for the SVS-24.  It has a 130-round capacity, optimized for high rates of fire.",
+    "weight": 2358,
+    "volume": 5,
+    "price": 12000,
+    "material": [ "plastic", "steel" ],
+    "symbol": "#",
+    "color": "dark_gray",
+    "ammo_type": "654",
+    "capacity": 130,
+    "reliability": 8,
+    "reload_time": 120,
+    "flags": [ "MAG_BULKY" ]
+  },
+  {
+    "id": "svs_robomag",
+    "type": "MAGAZINE",
+    "name": "SVS auto-magazine",
+    "description": "A quick-loading auto-magazine for the Sarafanov SVS-24 rifle.  Unlike previous generations of magazines, this one uses microrobotics to load and fire its cartridges.",
+    "weight": 320,
+    "volume": 3,
+    "price": 4950,
+    "material": [ "plastic", "steel" ],
+    "symbol": "#",
+    "color": "dark_gray",
+    "ammo_type": "654",
+    "capacity": 42,
+    "reliability": 9,
+    "reload_time": 80,
+    "flags": [ "MAG_BULKY" ]
+  },
+  {
     "id": "svs-24",
     "type": "GUN",
     "symbol": "(",
@@ -86,22 +120,22 @@
     "sight_dispersion": 60,
     "durability": 9,
     "burst": 12,
-    "clip_size": 30,
-    "reload": 475,
-    "valid_mod_locations": [[ "accessories", 4 ],[ "barrel", 1 ],[ "bore", 1 ],[ "grip", 1 ],[ "magazine", 1 ],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]]
+    "valid_mod_locations": [[ "accessories", 4 ],[ "barrel", 1 ],[ "bore", 1 ],[ "grip", 1 ],[ "magazine", 1 ],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
+    "magazines": [
+        [ "654", [ "svs_robomag", "svs_bigrobomag" ] ],
+        [ "545x39", [ "cw_robomag", "cw_bigrobomag" ] ],
+        [ "762", [ "akmmag", "akmbigmag" ] ]
+    ]
   },
   {
     "id": "svs-24c",
+    "copy-from": "svs-24",
     "type": "GUN",
-    "symbol": "(",
     "color": "dark_gray",
     "name": "SVS-24C",
     "name_plural": "SVS-24C",
     "description": "The compact version of the standard SVS-24.  It is commonly issued to tank crews or special forces due to its smaller size.  The shorter barrel reduces accuracy.",
     "price": 440000,
-    "material": ["steel", "plastic"],
-    "skill": "rifle",
-    "ammo": "654",
     "weight": 3000,
     "volume": 8,
     "bashing": 12,
@@ -111,8 +145,6 @@
     "sight_dispersion": 60,
     "durability": 9,
     "burst": 12,
-    "clip_size": 30,
-    "reload": 475,
     "valid_mod_locations": [[ "accessories", 4 ],[ "barrel", 1 ],[ "bore", 1 ],[ "grip", 1 ],[ "magazine", 1 ],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]]
   },
   {
@@ -137,6 +169,7 @@
     "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
     "magazines": [
         [ "545x39", [ "cw_robomag", "cw_bigrobomag" ] ],
+        [ "654", [ "svs_robomag", "svs_bigrobomag" ] ],
         [ "762", [ "akmmag", "akmbigmag" ] ]
     ]
   },
@@ -176,6 +209,7 @@
   },
   {
     "id": "cw-24hack",
+      "copy-from": "cw-24",
     "type": "GUN",
     "symbol": "(",
     "color": "dark_gray",
@@ -194,9 +228,12 @@
     "sight_dispersion": 60,
     "durability": 6,
     "burst": 8,
-    "clip_size": 30,
-    "reload": 475,
-    "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]]
+    "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
+    "magazines": [
+        [ "654", [ "svs_bigrobomag", "svs_robomag" ] ],
+        [ "545x39", [ "cw_robomag", "cw_bigrobomag" ] ],
+        [ "762", [ "akmmag", "akmbigmag" ] ]
+    ]
   },
   {
     "id": "cw-24m_hack",
