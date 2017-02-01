@@ -19,5 +19,39 @@
         "mod_targets" : ["rifle"],
         "bashing" : 2,
         "ammo_modifier" : "NULL"
+    },
+    {
+        "id": "cw_handling",
+        "type": "GUNMOD",
+        "name": "CW recoil system",
+        "description": "An integral system designed to minimize recoil.",
+        "weight": 250,
+        "volume": 2,
+        "integral_volume": 0,
+        "price": 10000,
+        "material": [ "aluminum", "steel" ],
+        "symbol": ":",
+        "color": "dark_gray",
+        "location": "mechanism",
+        "mod_targets": [ "rifle" ],
+        "handling_modifier": 5,
+        "flags": [ "IRREMOVABLE" ]
+    },
+    {
+        "id": "svs_handling",
+        "type": "GUNMOD",
+        "name": "SVS recoil system",
+        "description": "An advanced integral system designed to minimize recoil.  Significantly better than the CW-24.",
+        "weight": 500,
+        "volume": 2,
+        "integral_volume": 0,
+        "price": 10000,
+        "material": [ "superalloy", "steel" ],
+        "symbol": ":",
+        "color": "dark_gray",
+        "location": "mechanism",
+        "mod_targets": [ "rifle" ],
+        "handling_modifier": 7,
+        "flags": [ "IRREMOVABLE" ]
     }
 ]
