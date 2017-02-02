@@ -28,5 +28,17 @@
     "name": "heavy rifle ammo",
     "default": "50bmg",
     "type": "ammunition_type"
+  },
+  {
+    "id": "84x246mm",
+    "name": "recoilless rifle ammo",
+    "default": "84x246mm_he",
+    "type": "ammunition_type"
+  },
+  {
+    "id": "RPG-7",
+    "name": "anti-tank missile",
+    "default": "RPG-7_ammo",
+    "type": "ammunition_type"
   }
 ]
