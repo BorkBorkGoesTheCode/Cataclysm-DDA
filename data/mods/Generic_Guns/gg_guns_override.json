@@ -273,5 +273,19 @@
     "description": "A powerful semi-automatic pistol which fires revolver rounds.  Loads a detachable, 7-round magazine.",
     "ammo": "44",
     "magazines": [ [ "44", [ "deaglemag" ] ] ]
+  },
+  {
+    "id": "m3_carlgustav",
+    "copy-from": "m3_carlgustav",
+    "type": "GUN",
+    "name": "recoilless projectile",
+    "description": "It can fire many types of munitions without revealing the user's position."
+  },
+  {
+    "id": "RPG",
+    "copy-from": "RPG",
+    "type": "GUN",
+    "name": "anti-tank missile",
+    "description": "todo"
   }
 ]
