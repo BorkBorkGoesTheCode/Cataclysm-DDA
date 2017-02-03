@@ -18,6 +18,12 @@
     "type": "ammunition_type"
   },
   {
+    "id": "300",
+    "name": "sniper rifle ammo",
+    "default": "300",
+    "type": "ammunition_type"
+  },
+  {
     "id": "308",
     "name": "rifle ammo",
     "default": "308",
