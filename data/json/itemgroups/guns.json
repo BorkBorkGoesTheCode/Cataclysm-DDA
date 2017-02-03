@@ -294,8 +294,7 @@
     "type": "item_group",
     "id": "guns_launcher_rocket",
     "//": "Factory manufactured rocket launchers (excludes improvised weapons)",
-    "items": [
-    ]
+    "items": [ [ "m202_flash", 50 ] ]
   },
   {
     "type": "item_group",
