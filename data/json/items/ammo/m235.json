@@ -1,0 +1,23 @@
+[
+  {
+    "id": "m235tpa",
+    "type": "AMMO",
+    "name": "M235 TPA rocket",
+    "//": "$500 per.  Cheap!",
+    "description": "66mm incendiary rockets used in the M202 FLASH rocket launcher.  Their warheads are filled with a thickened pyrophoric agent, which burns at 2200  degrees Fahrenheit.",
+    "weight": 1140,
+    "volume": 8,
+    "price": 200000,
+    "material": [ "steel", "powder" ],
+    "symbol": "=",
+    "color": "dark_gray",
+    "count": 4,
+    "ammo_type": "m235",
+    "range": 70,
+    "damage": 60,
+    "pierce": 10,
+    "dispersion": 150,
+    "recoil": 500,
+    "effects": [ "COOKOFF", "NAPALM_BIG", "TRAIL", "NEVER_MISFIRES" ]
+  }
+]
