@@ -17,11 +17,14 @@
     "skill": "launcher",
     "dispersion": 300,
     "durability": 7,
-    "burst": 4,
     "loudness": 200,
     "clip_size": 4,
-    "reload": 600,
+    "reload": 300,
+    "modes": [
+      [ "DEFAULT", "single", 1, "NPC_AVOID" ],
+      [ "MULTI", "multi", 4, [ "NPC_AVOID", "SIMULTANEOUS" ] ]
+    ],
     "valid_mod_locations": [ [ "accessories", 4 ], [ "grip", 1 ], [ "mechanism", 4 ], [ "sights", 1 ] ],
-    "flags": [ "MODE_BURST", "BACKBLAST", "NEVER_JAMS" ]
+    "flags": [ "BACKBLAST", "NEVER_JAMS" ]
   }
 ]
