@@ -13,7 +13,7 @@
     "color": "dark_gray",
     "count": 4,
     "ammo_type": "m235",
-    "range": 70,
+    "range": 36,
     "damage": 60,
     "pierce": 10,
     "dispersion": 150,
