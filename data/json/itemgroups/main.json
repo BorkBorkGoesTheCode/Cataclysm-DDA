@@ -135,6 +135,7 @@
     "id" : "antique_guns",
     "magazine": 100,
     "items" : [
+      { "group": "antique_ammo", "prob": 50 },
       ["pistol_flintlock", 60],
       ["carbine_flintlock", 40],
       ["lemat_revolver", 30],
