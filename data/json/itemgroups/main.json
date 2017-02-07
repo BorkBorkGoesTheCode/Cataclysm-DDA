@@ -131,22 +131,11 @@
       ["rm451_flamethrower", 40]
     ]
   },{
-    "type" : "item_group",
-    "id" : "antique_guns",
-    "items" : [
-      ["pistol_flintlock", 60],
-      ["carbine_flintlock", 40],
-      ["lemat_revolver", 30],
-      ["rifle_flintlock", 75],
-      ["colt_army", 30],
-      ["colt_navy", 30]
-    ]
-  },{
-    "type" : "item_group",
-    "id" : "antique_guns_with_ammo",
-    "ammo": 100,
+    "type": "item_group",
+    "id": "antique_guns",
+    "ammo": 25,
     "magazine": 100,
-    "items" : [
+    "items": [
       ["pistol_flintlock", 60],
       ["carbine_flintlock", 40],
       ["lemat_revolver", 30],
