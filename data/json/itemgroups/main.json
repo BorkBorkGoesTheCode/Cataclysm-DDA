@@ -146,6 +146,7 @@
     "type" : "item_group",
     "id" : "antique_ammo",
     "items" : [
+      [ "flintlock_pouch", 30 ],
       ["flintlock_ammo", 60],
       ["flintlock_shot", 40],
       ["36navy", 50],
