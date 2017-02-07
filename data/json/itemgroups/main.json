@@ -133,6 +133,7 @@
   },{
     "type" : "item_group",
     "id" : "antique_guns",
+    "//": "Early blackpowder firearms and guns manufactured before 1939.",
     "magazine": 100,
     "items" : [
       { "group": "antique_ammo", "prob": 50 },
@@ -146,6 +147,7 @@
   },{
     "type" : "item_group",
     "id" : "antique_ammo",
+    "//": "Blackpowder ammunition and ammunition made for guns manufactured before 1939.",
     "items" : [
       [ "flintlock_pouch", 30 ],
       ["flintlock_ammo", 60],
