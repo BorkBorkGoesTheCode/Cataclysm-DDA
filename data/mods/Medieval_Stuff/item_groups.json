@@ -55,7 +55,7 @@
     ]
   },{
     "type" : "item_group",
-    "id" : "museum_guns",
+    "id" : "antique_guns",
     "items":[
       ["fire_lance", 20],
       ["lance_charge", 10],
