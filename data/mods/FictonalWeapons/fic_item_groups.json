@@ -3,7 +3,7 @@
         "type": "item_group",
         "id": "rare",
         "items": [
-          ["ficrico", 3],
+          ["jhec_m128", 3],
           ["gunsword", 3],
           ["gunknife", 4],
           ["50pistol", 2],
@@ -22,7 +22,7 @@
       "id" : "guns_pistol_rare",
       "items":[
         [ "boomlighter", 2 ],
-        ["ficrico", 2],
+        ["jhec_m128", 2],
         ["gunsword", 2],
         ["gunknife", 2],
         ["50pistol", 2],
@@ -41,7 +41,7 @@
       "id" : "guns_smg_rare",
       "items":[
         [ "e1776", 2 ],
-        ["hk_mp5eod", 2],
+        ["m919", 2],
         ["ltcarb", 4]
       ]
     },
