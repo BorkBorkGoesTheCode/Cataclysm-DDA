@@ -1,6 +1,6 @@
 [
   {
-    "id": "ficrico",
+    "id": "jhec_m128",
     "copy-from": "pistol_revolver",
     "type": "GUN",
     "name": "JHEC M128",
@@ -125,7 +125,7 @@
     "valid_mod_locations": [[ "accessories", 4 ],[ "barrel", 1 ],[ "bore", 1 ],[ "grip", 1 ],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ]]
   },
   {
-    "id": "hk_mp5eod",
+    "id": "m919",
     "copy-from": "smg_base",
     "type": "GUN",
     "color": "dark_gray",
