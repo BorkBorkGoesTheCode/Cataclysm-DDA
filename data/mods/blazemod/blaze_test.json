@@ -859,7 +859,6 @@
     "weight": 3,
     "volume": 1,
     "price": 10000,
-    "bashing": 1,
     "material": "diamond",
     "symbol": "=",
     "color": "white",
