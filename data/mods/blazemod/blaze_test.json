@@ -867,7 +867,7 @@
     "ammo_type": "BB",
     "damage": 1,
     "pierce": 1,
-    "dispersion": 12
+    "dispersion": 150
   },
   {
     "id": "plating_diamond",
