@@ -1766,7 +1766,7 @@
     },
     {
         "type" : "construction",
-        "description" : "Build Standing Tank", "//": "a freestanding metal tank, useful for holding liquids",
+        "description" : "Build Standing Tank",
         "category" : "FURN",
         "required_skills" : [ [ "fabrication", 2 ], [ "cooking", 1 ] ],
         "time" : 180,
@@ -1780,6 +1780,7 @@
             [ [ "metal_tank", 4 ] ],
             [ [ "water_faucet", 1] ]
         ],
+        "pre_note" : "Builds a freestanding metal tank, useful for holding liquids.",
         "pre_special" : "check_empty",
         "post_terrain" : "f_standing_tank"
     },{
