@@ -2617,6 +2617,7 @@
         "color": "dkgray",
         "move_cost_mod": 3,
         "required_str": 10,
+        "crafting_pseudo_item": "boulder_small",
         "flags": ["TRANSPARENT", "MINEABLE", "UNSTABLE", "MOUNTABLE", "TINY"],
         "bash": {
             "str_min": 16, "str_max": 40,
@@ -2634,6 +2635,7 @@
         "color": "dkgray",
         "move_cost_mod": 6,
         "required_str": 16,
+        "crafting_pseudo_item": "boulder_medium",
         "flags": ["NOITEM", "TRANSPARENT", "MINEABLE", "UNSTABLE", "MOUNTABLE", "SHORT", "BASHABLE"],
         "bash": {
             "str_min": 32, "str_max": 80,
