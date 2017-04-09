@@ -475,6 +475,38 @@
     "flags": [ "BAROMETER" ]
   },
   {
+    "id": "boulder_small",
+    "type": "TOOL",
+    "name": "seeing this is a bug",
+    "description": "seeing this is a bug",
+    "weight": 0,
+    "volume": 0,
+    "price": 0,
+    "to_hit": 0,
+    "bashing": 0,
+    "material": "stone",
+    "symbol": "o",
+    "color": "dark_gray",
+    "qualities": [ [ "ANVIL", 1 ] ],
+    "flags": [ "DURABLE_MELEE" ]
+  },
+  {
+    "id": "boulder_medium",
+    "type": "TOOL",
+    "name": "seeing this is a bug",
+    "description": "seeing this is a bug",
+    "weight": 0,
+    "volume": 0,
+    "price": 0,
+    "to_hit": 0,
+    "bashing": 0,
+    "material": "stone",
+    "symbol": "0",
+    "color": "dark_gray",
+    "qualities": [ [ "ANVIL", 2 ] ],
+    "flags": [ "DURABLE_MELEE" ]
+  },
+  {
     "id": "battleaxe",
     "type": "TOOL",
     "category": "weapons",
