@@ -30,6 +30,7 @@
         "name_plural" : "6.54x42mm 9N12",
         "description" : "The 6.54x42mm 9N12 has superior armor piercing capabilities thanks to its tungsten carbide core.  Tungsten carbide was used in anti-tank rounds of the 20th and 21st century, whenever depleted uranium was unavailable or undesirable.",
         "material" : [ "steel", "powder" ],
+        "damage": 43,
         "pierce" : 32
     },
     {
