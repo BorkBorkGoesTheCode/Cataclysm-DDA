@@ -46,6 +46,8 @@
     "id": "ammo_pistol_obscure",
     "//": "Imported or otherwise very obscure pistol ammo.",
     "items": [
+      [ "36navy", 50 ],
+      [ "44army", 50 ],
       [ "454_Casull", 100 ],
       [ "500_Magnum", 100 ],
       [ "762_25", 50 ],
