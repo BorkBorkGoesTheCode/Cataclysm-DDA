@@ -1,5 +1,11 @@
 [
   {
+    "id": "84x246mm",
+    "name": "recoilless rifle shell",
+    "default": "84x246mm_he",
+    "type": "ammunition_type"
+  },
+  {
     "id": "44",
     "name": "revolver ammo",
     "default": "44magnum",
