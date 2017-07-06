@@ -63,6 +63,8 @@
     "id": "ammo_pistol_reloaded",
     "//": "Reloaded pistol ammo balanced according to rarity.",
     "items": [
+       [ "36navy", 10 ],
+       [ "44army", 10 ],
        [ "reloaded_10mm", 10 ],
        [ "reloaded_32_acp", 50 ],
        [ "reloaded_38_fmj", 30 ],
