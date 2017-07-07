@@ -16,7 +16,6 @@
     "bashing": 12,
     "to_hit": -1,
     "dispersion": 75,
-    "sight_dispersion": 60,
     "durability": 9,
     "burst": 12,
     "valid_mod_locations": [[ "accessories", 4 ],[ "barrel", 1 ],[ "bore", 1 ],[ "grip", 1 ],[ "magazine", 1 ],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
@@ -55,7 +54,6 @@
     "bashing": 12,
     "to_hit": -1,
     "dispersion": 75,
-    "sight_dispersion": 60,
     "durability": 9,
     "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
     "magazines": [
@@ -112,7 +110,6 @@
     "description": "Civilian version of the SVS-24.  It has a modified receiver and a new crudely crafted full-auto bolt carrier.  Don't expect the original reliability.",
     "price": 420000,
     "dispersion": 120,
-    "sight_dispersion": 60,
     "durability": 6,
     "burst": 8
   },
@@ -132,7 +129,6 @@
     "bashing": 12,
     "to_hit": -1,
     "dispersion": 75,
-    "sight_dispersion": 60,
     "durability": 9,
     "valid_mod_locations": [[ "accessories", 4],[ "barrel", 1],[ "bore", 1],[ "grip", 1],["magazine", 1],[ "mechanism", 4 ],[ "muzzle", 1 ],[ "rail", 1 ],[ "sights", 1 ],[ "stock", 1 ],[ "underbarrel", 1 ]],
     "magazines": [
@@ -157,7 +153,6 @@
     "bashing": 8,
     "to_hit": -1,
     "dispersion": 150,
-    "sight_dispersion": 150,
     "durability": 8,
     "burst": 30,
     "clip_size": 90,
