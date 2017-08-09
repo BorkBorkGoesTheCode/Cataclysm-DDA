@@ -217,6 +217,7 @@
     "type": "GUN",
     "name": "USP .45",
     "ammo": "45",
-    "ranged_damage": 1
+    "ranged_damage": 1,
+    "default_mods": [ "rail_laser_sight", "suppressor" ]
   }
 ]
