@@ -57,7 +57,6 @@
     "id": "hand_tools",
     "type": "item_group",
     "items": [
-      [ "flashlight", 35 ],
       [ "wrench", 50 ],
       [ "hammer", 40 ],
       [ "saw", 50 ],
@@ -68,7 +67,6 @@
       [ "screwdriver", 35 ],
       [ "screwdriver_set", 25 ],
       [ "chisel", 10 ],
-      [ "heavy_flashlight", 15 ],
       [ "metal_smoother", 20 ],
       [ "toolbox", 20 ]
     ]
@@ -77,6 +75,8 @@
     "id": "power_tools",
     "type": "item_group",
     "items": [
+      [ "flashlight", 35 ],
+      [ "heavy_flashlight", 15 ],
       [ "chainsaw_off", 10 ],
       [ "elec_chainsaw_off", 10 ],
       [ "trimmer_off", 40 ],
