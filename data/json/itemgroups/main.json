@@ -147,12 +147,7 @@
     "ammo": 100,
     "magazine": 100,
     "items" : [
-      ["pistol_flintlock", 60],
-      ["carbine_flintlock", 40],
-      ["lemat_revolver", 30],
-      ["rifle_flintlock", 75],
-      ["colt_army", 30],
-      ["colt_navy", 30]
+      { "group": "antique_guns", "prob": 100 }
     ]
   },{
     "type" : "item_group",
