@@ -110,11 +110,6 @@
     "items": [ [ "colt_saa", 30 ] ]
   },
   {
-    "id": "antique_guns_with_ammo",
-    "type": "item_group",
-    "items": [ [ "colt_saa", 30 ] ]
-  },
-  {
     "id": "antique_ammo",
     "type": "item_group",
     "items": [ [ "45_long_colt", 60 ] ]
