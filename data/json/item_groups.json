@@ -8312,6 +8312,13 @@
 "type"  : "item_group",
 "id"    : "antique_rare",
 "items" : [
+      { "group": "museum_guns", "prob": 12 },
+      ["m1903", 2],
+      ["mosin91_30", 2],
+      ["marlin_9a", 2],
+      ["shotgun_s", 3],
+      ["shotgun_d", 3],
+      ["tommygun", 1],
       ["trex_gun", 4],
       ["spiral_stone", 2],
       ["cutlass", 2],
@@ -8352,9 +8359,6 @@
       ["wakizashi_fake", 4],
       ["wakizashi_inferior", 8],
       ["kris_fake", 8],
-      ["pistol_flintlock", 4],
-      ["carbine_flintlock", 4],
-      ["rifle_flintlock", 4],
       ["petrified_eye", 2]
     ]
   },{
