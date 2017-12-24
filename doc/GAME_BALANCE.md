@@ -215,9 +215,9 @@ Ammo ID            | Description                 | Energy, J | Dmg | Base Brl | 
 5.7x28mm SS190     | 31gr AP FMJ bullet          | 534       | 23  | 10.4in   |        damage reduced by 3   |
 4.6x30mm           | 31gr copper plated steel bullet | 505   | 22  | 7.1in    |        damage reduced by 4   |
 7.62x39mm          | 123gr FMJ bullet            | 2179      | 46  | 16.3in   |                              |
-7.62x39mm M43      | 123gr steel core FMJ bullet | 1607      | 47  | 16.3in   |        damage lowered by 15  |
-7.62x39mm M67      | 123gr steel core FMJ bullet | 1607      | 47  | 16.3in   |        damage lowered by 9   |
-5.45x39mm 7N10     | 56gr FMJ bullet             | 1402      | 37  | 16.3in   |        damage increased by 3 |
+7.62x39mm M43      | 123gr steel core FMJ bullet | 1607      | 47  | 16.3in   |                              |
+7.62x39mm M67      | 123gr steel core FMJ bullet | 1607      | 47  | 16.3in   |                              |
+5.45x39mm 7N10     | 56gr FMJ bullet             | 1402      | 37  | 16.3in   |                              |
 5.45x39mm 7N22     | 57gr steel core FMJ bullet  | 1461      | 38  | 16.3in   |                              |
 .223 Remington     | 36gr JHP bullet             | 1524      | 39  | 20in     |Uses 5.56 NATO barrel baseline; damage increased by 5 |
 5.56x45mm M855A1   | 62gr copper core FMJBT bullet | 1843      | 43  | 20in     |                              |
@@ -225,10 +225,10 @@ Ammo ID            | Description                 | Energy, J | Dmg | Base Brl | 
 7.62 NATO M80      | 147gr FMJ bullet            | 3304      | 57  | 24in     |                              |
 7.62 NATO M62      | 142gr tracer bullet         | 3232      | 57  | 24in     |  Belt with 1/5 tracer rounds |
 .270 Winchester    | 130gr soft point bullet     | 3663      | 61  | 24in     |                              |
-.30-06 Springfield | 165gr soft point bullet     | 3894      | 62  | 24in     |        damage increased by 4 |
-.30-06 M2          | 165.7gr AP bullet           | 3676      | 60  | 24in     |         damage reduced by 10 |
-.30-06 M14A1       | Incendiary ammunition       | 3894      | 62  | 24in     |         damage reduced by 10 |
-.300 Winchester Magnum | 220gr JHP bullet        | 5299      | 73  | 24in     |        damage increased by 5 |
+.30-06 Springfield | 165gr soft point bullet     | 3894      | 62  | 24in     |                              |
+.30-06 M2          | 165.7gr AP bullet           | 3676      | 60  | 24in     |                              |
+.30-06 M14A1       | Incendiary ammunition       | 3894      | 62  | 24in     |                              |
+.300 Winchester Magnum | 220gr JHP bullet        | 5299      | 73  | 24in     |                              |
 7.62x54mmR         | 150gr FMJ bullet            | 3629      | 60  | 28in     |                              |
 .700 NX            | 1000gr JSP bullet           | 12100     | 110 | 28in     |                              |
 .50 BMG Ball       | 750gr FMJ-BT bullet         | 17083     | 131 | 45in     |                              |
