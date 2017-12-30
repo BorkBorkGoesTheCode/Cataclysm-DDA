@@ -582,6 +582,7 @@
     "type": "item_group",
     "subtype": "distribution",
     "items": [
+      [ "shark_suit", 5 ],
       [ "bat", 60 ],
       [ "bat_metal", 60 ],
       [ "boxing_gloves", 40 ],

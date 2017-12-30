@@ -2018,6 +2018,7 @@
     "type" : "item_group",
     "id" : "sports",
     "items":[
+      ["shark_suit", 5],
       ["bandages", 50],
       ["cotton_ball", 50],
       ["aspirin", 85],
@@ -2247,6 +2248,7 @@
     "type" : "item_group",
     "id" : "allsporting",
     "items":[
+      ["shark_suit", 10],
       ["aspirin", 85],
       ["sports_drink", 20],
       ["bat", 60],
