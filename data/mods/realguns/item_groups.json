@@ -61,7 +61,8 @@
     "type": "item_group",
     "items": [
       [ "colt_saa", 30 ],
-      [ "bond_410", 20 ]
+      [ "bond_410", 20 ],
+      [ "m10_38", 30 ]
     ]
   },
   {
