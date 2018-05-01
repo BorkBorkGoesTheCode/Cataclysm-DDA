@@ -2071,7 +2071,7 @@
         "required_str": 16,
         "crafting_pseudo_item": "anvil",
         "flags": ["PLACE_ITEM", "TRANSPARENT", "NOITEM", "EASY_DECONSTRUCT"],
-        "deployed_item": "brazier",
+        "deployed_item": "anvil",
         "examine_action": "deployed_furniture",
         "bash": {
             "str_min": 4, "str_max": 8,
