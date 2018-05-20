@@ -170,6 +170,23 @@
     "watertight": true
   },
   {
+    "id": "bottle_plastic_large",
+    "type": "CONTAINER",
+    "category": "other",
+    "name": "2L plastic bottle",
+    "description": "A large resealable plastic bottle, holds 2 liters of liquid.",
+    "weight": 65,
+    "volume": 8,
+    "price": 0,
+    "to_hit": -1,
+    "material": "plastic",
+    "symbol": ")",
+    "color": "white",
+    "contains": 8,
+    "seals": true,
+    "watertight": true
+  },
+  {
     "id": "bottle_plastic_small",
     "type": "CONTAINER",
     "category": "other",
