@@ -73,6 +73,10 @@
     "id": "groce_softdrink",
     "type": "item_group",
     "items": [
+      { "item": "cola", "prob": 32, "charges": 8, "container-item": "plastic_bottle_large" },
+      { "item": "lemonlime", "prob": 15, "charges": 8, "container-item": "plastic_bottle_large" },
+      { "item": "orangesoda", "prob": 25, "charges": 8, "container-item": "plastic_bottle_large" },
+      { "item": "colamdew", "prob": 25, "charges": 8, "container-item": "plastic_bottle_large" },
       [ "lemonade", 30 ],
       [ "sports_drink", 40 ],
       [ "energy_drink", 40 ],

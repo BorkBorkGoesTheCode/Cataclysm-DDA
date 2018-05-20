@@ -155,6 +155,10 @@
     "type" : "item_group",
     "id" : "livingroom",
     "items":[
+      { "item": "cola", "prob": 35, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "lemonlime", "prob": 17, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "orangesoda", "prob": 10, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "colamdew", "prob": 17, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
       ["rootbeer", 65],
       ["mag_computer", 35],
       ["purple_drink", 35],
@@ -557,6 +561,10 @@
     "type" : "item_group",
     "id" : "fridge",
     "items":[
+      { "item": "cola", "prob": 35, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "lemonlime", "prob": 25, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "orangesoda", "prob": 10, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "colamdew", "prob": 17, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
       ["water_clean", 90],
       ["water_mineral", 10],
       ["oj", 50],
@@ -2499,6 +2507,7 @@
     "type" : "item_group",
     "id" : "trash",
     "items":[
+      ["plastic_bottle_large", 5],
       ["plastic_shopping_bag", 35],
       ["iodine", 5],
       ["prussian_blue", 5],
@@ -2564,6 +2573,7 @@
     "type" : "item_group",
     "id" : "trash_cart",
     "items":[
+      ["plastic_bottle_large", 5],
       ["bottle_plastic", 5],
       ["bottle_plastic_small", 15],
       ["bottle_glass", 2],
@@ -7275,6 +7285,10 @@
     "type" : "item_group",
     "id" : "stash_food",
     "items":[
+      { "item": "cola", "prob": 35, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "lemonlime", "prob": 30, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "orangesoda", "prob": 30, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
+      { "item": "colamdew", "prob": 30, "charges-min": 1, "charges-max": 8, "container-item": "plastic_bottle_large" },
       ["water_clean", 90],
       ["water_mineral", 5],
       ["cola", 70],
