@@ -47,6 +47,7 @@
         "copy-from": "casing",
         "name" : "6.54x42mm casing",
         "description" : "An empty casing from a 6.54x42 round.",
+        "color" : "dark_gray",
         "material" : "steel",
         "volume" : "10ml",
         "weight" : 5
