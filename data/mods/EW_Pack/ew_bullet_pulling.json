@@ -6,13 +6,13 @@
         "difficulty": 5,
         "time": 500,
         "flags": [ "UNCRAFT_SINGLE_CHARGE" ],
-        "tools": [ [ [ "puller", -1 ] ] ],
+        "qualities": [ { "id": "PULL", "level": 1 } ],
         "components": [
-            [ [ "lead", 5 ] ],
+            [ [ "lead", 2 ] ],
             [ [ "654_casing", 1 ] ],
             [ [ "smrifle_primer", 1 ] ],
             [ [ "gunpowder", 10 ] ],
-            [ [ "copper", 5 ] ]
+            [ [ "copper", 2 ] ]
         ]
     },
     {
