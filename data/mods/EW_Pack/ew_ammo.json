@@ -20,7 +20,7 @@
         "dispersion" : 5,
         "recoil" : 2442,
         "count" : 30,
-        "stack_size" : 30,
+        "stack_size" : 40,
         "effects" : ["COOKOFF"]
     },
     {
