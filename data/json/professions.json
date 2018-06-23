@@ -5181,12 +5181,22 @@
             }
 		],
         "items": {
-            "both": [
-                "wetsuit",
-				"shark_suit",
-                "goggles_swim",
-				"rebreather"
-            ]
+            "both": {
+                "items": [
+                    "wetsuit",
+                    "wetsuit_hood",
+                    "wetsuit_booties",
+                    "wetsuit_gloves",
+                    "divebag",
+                    "bucket",
+				    "shark_suit"
+                ],
+                "entries": [
+                    { "item": "swim_fins", "custom-flags": [ "no_auto_equip" ] },
+                    { "item": "goggles_swim", "custom-flags": [ "no_auto_equip" ] },
+                    { "item": "rebreather", "custom-flags": [ "no_auto_equip" ] }
+                ]
+            }
         }
     }
 ]
