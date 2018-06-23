@@ -5177,7 +5177,7 @@
     "skills": [ { "level": 3, "name": "swimming" } ],
     "items": {
       "both": {
-        "items": [ "wetsuit", "wetsuit_hood", "wetsuit_booties", "wetsuit_gloves", "divebag", "bucket", "shark_suit" ],
+        "items": [ "wetsuit", "wetsuit_hood", "wetsuit_booties", "wetsuit_gloves", "dive_bag", "bucket", "shark_suit" ],
         "entries": [
           { "item": "swim_fins", "custom-flags": [ "no_auto_equip" ] },
           { "item": "goggles_swim", "custom-flags": [ "no_auto_equip" ] },
