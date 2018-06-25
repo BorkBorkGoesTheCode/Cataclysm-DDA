@@ -51,6 +51,7 @@
    "difficulty": 5,
    "time": 40000,
    "book_learn": [["recipe_bullets", 3 ] , [ "mag_rifle", 4 ]],
+   "using": [ [ "ammo_bullet", 150 ] ],
    "tools": [
       [
         [ "press", -1 ]
@@ -70,14 +71,6 @@
        ],
        [
          [ "gunpowder", 300 ]
-       ],
-       [
-         [ "lead", 150 ],
-         [ "gold_small", 150 ],
-         [ "silver_small", 150 ],
-         [ "tin", 150 ],
-         [ "bismuth", 150 ],
-         [ "solder_wire", 150 ]
        ],
        [
          [ "copper", 75 ]
