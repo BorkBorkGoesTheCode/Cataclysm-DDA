@@ -6,7 +6,7 @@
         "difficulty": 5,
         "time": 500,
         "flags": [ "UNCRAFT_SINGLE_CHARGE" ],
-        "tools": [ [ [ "puller", -1 ] ] ],
+        "qualities": [ { "id": "PULL", "level": 1 } ],
         "components": [
             [ [ "lead", 8 ] ],
             [ [ "654_casing", 1 ] ],
@@ -22,7 +22,7 @@
         "difficulty": 5,
         "time": 500,
         "flags": [ "UNCRAFT_SINGLE_CHARGE" ],
-        "tools": [ [ [ "puller", -1 ] ] ],
+        "qualities": [ { "id": "PULL", "level": 1 } ],
         "components": [
             [ [ "lead", 6 ] ],
             [ [ "654_casing", 1 ] ],
