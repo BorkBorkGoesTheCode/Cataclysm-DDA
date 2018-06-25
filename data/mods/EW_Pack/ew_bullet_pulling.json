@@ -8,11 +8,11 @@
         "flags": [ "UNCRAFT_SINGLE_CHARGE" ],
         "tools": [ [ [ "puller", -1 ] ] ],
         "components": [
-            [ [ "lead", 5 ] ],
+            [ [ "lead", 8 ] ],
             [ [ "654_casing", 1 ] ],
             [ [ "smrifle_primer", 1 ] ],
-            [ [ "gunpowder", 10 ] ],
-            [ [ "copper", 5 ] ]
+            [ [ "gunpowder", 8 ] ],
+            [ [ "copper", 3 ] ]
         ]
     },
     {
