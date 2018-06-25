@@ -49,15 +49,15 @@
     "skill_used": "fabrication",
     "difficulty": 3,
     "skills_required": [ "gun", 3 ],
-    "time": 1333,
+    "time": 2000,
     "batch_time_factors": [ 60, 5 ],
     "book_learn": [ [ "recipe_bullets", 3 ], [ "mag_rifle", 4 ] ],
     "charges": 1,
-    "using": [ [ "bullet_forming", 1 ], [ "ammo_bullet", 5 ] ],
+    "using": [ [ "bullet_forming", 1 ], [ "ammo_bullet", 8 ] ],
     "components": [
       [ [ "654_casing", 1 ] ],
       [ [ "smrifle_primer", 1 ] ],
-      [ [ "gunpowder", 10 ] ],
+      [ [ "gunpowder", 8 ] ],
       [ [ "copper", 3 ] ]
     ]
   },{
